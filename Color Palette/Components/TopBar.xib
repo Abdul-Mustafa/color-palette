@@ -34,7 +34,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.86043792517006801" green="0.17647058823529413" blue="0.87760416666666663" alpha="0.86118584437086088" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.86043792517006801" green="0.17647058823529413" blue="0.87760416666666663" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="llB-Z3-JPN" firstAttribute="centerX" secondItem="LZG-mk-a1x" secondAttribute="centerX" id="3lW-rx-kkR"/>
                         <constraint firstItem="rRA-5y-aP2" firstAttribute="centerY" secondItem="LZG-mk-a1x" secondAttribute="centerY" id="8aC-es-X0s"/>
@@ -51,13 +51,13 @@
             <color key="backgroundColor" red="0.94901960784313721" green="0.27450980392156865" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6iT-SJ-eG1" secondAttribute="trailing" constant="48" id="2G7-Y7-ktu"/>
-                <constraint firstItem="6iT-SJ-eG1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="49" id="3hf-3o-TZc"/>
+                <constraint firstItem="6iT-SJ-eG1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="MZ5-td-0kv"/>
                 <constraint firstItem="LZG-mk-a1x" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="TPm-i4-cBl"/>
                 <constraint firstItem="6iT-SJ-eG1" firstAttribute="top" secondItem="LZG-mk-a1x" secondAttribute="bottom" id="YZH-z5-blk"/>
                 <constraint firstItem="LZG-mk-a1x" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Zlg-BO-sp0"/>
                 <constraint firstItem="6iT-SJ-eG1" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="a20-L9-wAi"/>
                 <constraint firstItem="LZG-mk-a1x" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.879353" id="i1S-Sn-gYS"/>
+                <constraint firstItem="6iT-SJ-eG1" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.879353" id="vOJ-lA-Eec"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

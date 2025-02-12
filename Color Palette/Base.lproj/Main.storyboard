@@ -11,7 +11,7 @@
         <!--More-->
         <scene sceneID="N86-Tn-M96">
             <objects>
-                <viewController id="ZxQ-qj-1Ce" sceneMemberID="viewController">
+                <viewController id="ZxQ-qj-1Ce" customClass="MoreVC" customModule="Color_Palette" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JX5-9P-IGW">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,6 +39,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="More" image="ellipsis" catalog="system" id="PP4-vR-G3T"/>
+                    <connections>
+                        <outlet property="SubView" destination="dfd-CT-qGR" id="T2h-0b-fGB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Zm-sj-bAz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -47,7 +50,7 @@
         <!--Explore-->
         <scene sceneID="OJw-6J-irF">
             <objects>
-                <viewController id="LPJ-Fy-95d" sceneMemberID="viewController">
+                <viewController id="LPJ-Fy-95d" customClass="ExploreVC" customModule="Color_Palette" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kAX-jS-gyE">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -75,6 +78,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Explore" image="arrow.down.left.arrow.up.right.circle.fill" catalog="system" id="6ki-yH-CKG"/>
+                    <connections>
+                        <outlet property="SubView" destination="Xyn-Et-JYb" id="O5D-2P-hs3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dk7-jE-K6P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -83,7 +89,7 @@
         <!--Collection-->
         <scene sceneID="jDJ-cj-VAw">
             <objects>
-                <viewController id="A1d-yx-wix" sceneMemberID="viewController">
+                <viewController id="A1d-yx-wix" customClass="CollectionVC" customModule="Color_Palette" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r0h-RN-MIH">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -92,8 +98,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="163.66666666666666"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Oz-OE-1NF">
-                                <rect key="frame" x="175.66666666666666" y="415.66666666666669" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Oz-OE-1NF">
+                                <rect key="frame" x="158" y="415.66666666666669" width="77" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -111,6 +117,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Collection" image="circle.grid.2x2.fill" catalog="system" id="9Ju-Dd-qpA"/>
+                    <connections>
+                        <outlet property="SubView" destination="6DQ-AV-Wob" id="mip-8k-Xp4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1bZ-j8-8Xk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
