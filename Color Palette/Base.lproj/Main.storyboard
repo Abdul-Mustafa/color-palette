@@ -22,11 +22,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dfd-CT-qGR">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="163.66666666666666"/>
+                                <color key="backgroundColor" systemColor="systemBrownColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LxV-4Q-QTk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="dfd-CT-qGR" firstAttribute="leading" secondItem="JX5-9P-IGW" secondAttribute="leading" id="KJM-2U-DnD"/>
+                            <constraint firstItem="dfd-CT-qGR" firstAttribute="top" secondItem="JX5-9P-IGW" secondAttribute="top" id="SbQ-Dq-CfB"/>
+                            <constraint firstItem="dfd-CT-qGR" firstAttribute="height" secondItem="JX5-9P-IGW" secondAttribute="height" multiplier="0.192097" id="oK9-NL-EyX"/>
                             <constraint firstItem="lIL-vP-VB0" firstAttribute="centerY" secondItem="JX5-9P-IGW" secondAttribute="centerY" id="qe0-zF-qxH"/>
+                            <constraint firstAttribute="trailing" secondItem="dfd-CT-qGR" secondAttribute="trailing" id="tHh-ie-qBY"/>
                             <constraint firstItem="lIL-vP-VB0" firstAttribute="centerX" secondItem="JX5-9P-IGW" secondAttribute="centerX" id="wC8-yR-zNk"/>
                         </constraints>
                     </view>
@@ -50,12 +58,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xyn-Et-JYb">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="163.66666666666666"/>
+                                <color key="backgroundColor" systemColor="systemBrownColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6f2-0l-hWG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="dYZ-CQ-pr1" firstAttribute="centerY" secondItem="kAX-jS-gyE" secondAttribute="centerY" id="IHr-9b-7Oj"/>
+                            <constraint firstItem="Xyn-Et-JYb" firstAttribute="leading" secondItem="kAX-jS-gyE" secondAttribute="leading" id="L3V-Hg-L6Z"/>
+                            <constraint firstItem="Xyn-Et-JYb" firstAttribute="top" secondItem="kAX-jS-gyE" secondAttribute="top" id="O3K-gv-kiO"/>
                             <constraint firstItem="dYZ-CQ-pr1" firstAttribute="centerX" secondItem="kAX-jS-gyE" secondAttribute="centerX" id="R7f-cd-mR9"/>
+                            <constraint firstItem="Xyn-Et-JYb" firstAttribute="height" secondItem="kAX-jS-gyE" secondAttribute="height" multiplier="0.192097" id="fqA-3M-3g3"/>
+                            <constraint firstAttribute="trailing" secondItem="Xyn-Et-JYb" secondAttribute="trailing" id="mWK-6g-cq3"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Explore" image="arrow.down.left.arrow.up.right.circle.fill" catalog="system" id="6ki-yH-CKG"/>
@@ -72,8 +88,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKP-oa-fKk">
-                                <rect key="frame" x="158" y="415.66666666666669" width="77" height="21"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6DQ-AV-Wob">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="163.66666666666666"/>
+                                <color key="backgroundColor" systemColor="systemBrownColor"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Oz-OE-1NF">
+                                <rect key="frame" x="175.66666666666666" y="415.66666666666669" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -82,8 +102,12 @@
                         <viewLayoutGuide key="safeArea" id="o6R-Fe-qRv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="HKP-oa-fKk" firstAttribute="centerX" secondItem="r0h-RN-MIH" secondAttribute="centerX" id="Lmp-u6-BZ2"/>
-                            <constraint firstItem="HKP-oa-fKk" firstAttribute="centerY" secondItem="r0h-RN-MIH" secondAttribute="centerY" id="Rhu-Dk-3Aj"/>
+                            <constraint firstItem="6DQ-AV-Wob" firstAttribute="height" secondItem="r0h-RN-MIH" secondAttribute="height" multiplier="0.192097" id="XzI-Ox-xLT"/>
+                            <constraint firstItem="6DQ-AV-Wob" firstAttribute="top" secondItem="r0h-RN-MIH" secondAttribute="top" id="YdA-IY-X02"/>
+                            <constraint firstItem="0Oz-OE-1NF" firstAttribute="centerX" secondItem="r0h-RN-MIH" secondAttribute="centerX" id="Ytc-iN-TNg"/>
+                            <constraint firstAttribute="trailing" secondItem="6DQ-AV-Wob" secondAttribute="trailing" id="kNB-PF-4QE"/>
+                            <constraint firstItem="6DQ-AV-Wob" firstAttribute="leading" secondItem="r0h-RN-MIH" secondAttribute="leading" id="r7i-bu-lJu"/>
+                            <constraint firstItem="0Oz-OE-1NF" firstAttribute="centerY" secondItem="r0h-RN-MIH" secondAttribute="centerY" id="tNW-UR-oKm"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Collection" image="circle.grid.2x2.fill" catalog="system" id="9Ju-Dd-qpA"/>
@@ -95,30 +119,41 @@
         <!--Home-->
         <scene sceneID="HWw-t7-bgm">
             <objects>
-                <viewController id="asl-mI-rqJ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gsx-L3-pc9">
+                <viewController id="asl-mI-rqJ" customClass="ViewController" customModule="Color_Palette" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vpS-Nj-ESo">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFi-S0-oKq">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9f-er-OVc">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="163.66666666666666"/>
+                                <color key="backgroundColor" systemColor="systemBrownColor"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1LT-mU-fmM">
                                 <rect key="frame" x="173.66666666666666" y="415.66666666666669" width="46" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="utc-oL-Lbk"/>
+                        <viewLayoutGuide key="safeArea" id="3Jz-u2-LC8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="hFi-S0-oKq" firstAttribute="centerX" secondItem="gsx-L3-pc9" secondAttribute="centerX" id="gVK-ni-Thr"/>
-                            <constraint firstItem="hFi-S0-oKq" firstAttribute="centerY" secondItem="gsx-L3-pc9" secondAttribute="centerY" id="v0r-Af-6nV"/>
+                            <constraint firstAttribute="trailing" secondItem="V9f-er-OVc" secondAttribute="trailing" id="2Xu-sC-xg8"/>
+                            <constraint firstItem="1LT-mU-fmM" firstAttribute="centerY" secondItem="vpS-Nj-ESo" secondAttribute="centerY" id="KvK-h5-9wm"/>
+                            <constraint firstItem="1LT-mU-fmM" firstAttribute="centerX" secondItem="vpS-Nj-ESo" secondAttribute="centerX" id="Rjx-Dx-b8b"/>
+                            <constraint firstItem="V9f-er-OVc" firstAttribute="top" secondItem="vpS-Nj-ESo" secondAttribute="top" id="Uv6-h9-gqn"/>
+                            <constraint firstItem="V9f-er-OVc" firstAttribute="leading" secondItem="vpS-Nj-ESo" secondAttribute="leading" id="imc-O0-kTd"/>
+                            <constraint firstItem="V9f-er-OVc" firstAttribute="height" secondItem="vpS-Nj-ESo" secondAttribute="height" multiplier="0.1922" id="rUI-lV-Qkd"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="tcv-io-6g6"/>
+                    <connections>
+                        <outlet property="SubView" destination="V9f-er-OVc" id="y6k-f9-z3V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bS7-Sf-7gE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3712" y="100"/>
+            <point key="canvasLocation" x="-3712.2137404580153" y="100"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="1SB-41-gEY">
@@ -148,6 +183,9 @@
         <image name="house.fill" catalog="system" width="128" height="104"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBrownColor">
+            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
