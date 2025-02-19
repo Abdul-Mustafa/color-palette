@@ -22,6 +22,7 @@ class TopBar: UIView {
     
     override func awakeFromNib() {
         
+        
    
     }
     

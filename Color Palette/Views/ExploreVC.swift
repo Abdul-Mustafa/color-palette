@@ -56,6 +56,7 @@ class ExploreVC: UIViewController {
             refrenceForViewTop.frame.size.height = SubView.frame.size.height
             refrenceForViewTop.frame.size.width = SubView.frame.size.width
           referenceForTopBar = refrenceForViewTop
+            referenceForTopBar?.title.text = "Explore"
         }
 
 

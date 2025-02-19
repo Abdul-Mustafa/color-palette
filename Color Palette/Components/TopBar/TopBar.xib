@@ -16,9 +16,9 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZG-mk-a1x">
                     <rect key="frame" x="48.666666666666686" y="59" width="707" height="163"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llB-Z3-JPN">
-                            <rect key="frame" x="311" y="62.333333333333329" width="85" height="38.333333333333329"/>
-                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llB-Z3-JPN">
+                            <rect key="frame" x="312.66666666666663" y="62.333333333333329" width="81.666666666666686" height="38.333333333333329"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -42,9 +42,13 @@
                         <constraint firstAttribute="trailing" secondItem="rRA-5y-aP2" secondAttribute="trailing" id="xEy-yM-dZM"/>
                     </constraints>
                 </view>
-                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="6iT-SJ-eG1">
-                    <rect key="frame" x="49" y="222" width="707" height="56"/>
+                <searchBar contentMode="redraw" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6iT-SJ-eG1">
+                    <rect key="frame" x="48.666666666666686" y="222" width="707" height="56"/>
                     <textInputTraits key="textInputTraits"/>
+                    <scopeButtonTitles>
+                        <string>Title</string>
+                        <string>Title</string>
+                    </scopeButtonTitles>
                 </searchBar>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
