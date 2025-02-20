@@ -99,6 +99,31 @@
       "name": "Pink",
       "colors": ["#8B008B", "#800080", "#C71585", "#DB7093", "#FF1493", "#FF69B4", "#FFB6C1", "#FFC0CB", "#FFD1DC", "#FFE4E1"]
 
+    },
+    {
+      "type": "Random Color",
+      "name": "Cosmic Burst",
+      "colors": ["#FF1E88", "#4A90E2", "#50E3C2", "#F5A623", "#7ED321"]
+    },
+    {
+      "type": "Random Color",
+      "name": "Digital Wave",
+      "colors": ["#9B51E0", "#FF3366", "#00C6FF", "#2ECE9D", "#FFD93D"]
+    },
+    {
+      "type": "Random Color",
+      "name": "Urban Splash",
+      "colors": ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEEAD"]
+    },
+    {
+      "type": "Random Color",
+      "name": "Neon Nights",
+      "colors": ["#FF0099", "#00FF87", "#00B4FF", "#7B61FF", "#FFE700"]
+    },
+    {
+      "type": "Random Color",
+      "name": "Pop Art",
+      "colors": ["#FF3D7F", "#3FB8AF", "#FF9E2C", "#4876FF", "#7FFF00"]
     }
   ]
 }
