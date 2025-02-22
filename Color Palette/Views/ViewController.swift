@@ -1,140 +1,4 @@
-//
-//
-//
-//
-//import UIKit
-//
-//class ViewController: UIViewController {
-//    
-//    
-//    
-//    
-//    var colorPalettes: [ColorPalette]?
-//    private var namedColorPalettes: [ColorPalette]? {
-//           return colorPalettes?.filter { $0.type == "Named Colors" }
-//       }
-//       
-//       // Add a computed property for Random Colors
-//       private var randomColorPalettes: [ColorPalette]? {
-//           return colorPalettes?.filter { $0.type == "Random Color" }
-//       }
-//
-//
-//    var topBar: TopBar?
-//    
-//    @IBOutlet weak var topBarContainer: UIView!
-//    @IBOutlet weak var tableviewAtHome: UITableView!
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        tableviewAtHome.dataSource = self
-//        tableviewAtHome.delegate = self
-//        tableviewAtHome.showsVerticalScrollIndicator = false
-//        tableviewAtHome.showsHorizontalScrollIndicator = false
-//
-//       
-//        topBarFunction()
-//        if let colorPalettesData = loadColorPalettes() {
-//            colorPalettes = colorPalettesData
-//           
-//        }
-//        
-//       
-//        
-//
-//      
-//    }
-//    
-//    func loadColorPalettes() -> [ColorPalette]? {
-//        
-//        guard let path = Bundle.main.path(forResource: "palettes", ofType: "json") else { return nil }
-//
-//        do {
-//            let jsonData = try Data(contentsOf: URL(fileURLWithPath: path))
-//            let decoder = JSONDecoder()
-//            let  decodedData = try decoder.decode(ColorPalettesData.self, from: jsonData)
-//            
-//            
-//            return decodedData.palettes
-//            
-//            
-//        } catch {
-//         
-//            return nil
-//        }
-//    }
-//    
-//}
-//
-//
-//
-//   
-//extension ViewController: UITableViewDataSource, UITableViewDelegate {
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-////
-//        
-//        return (namedColorPalettes?.count ?? 0) + (randomColorPalettes?.count ?? 0)
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        
-//        if indexPath.row == (namedColorPalettes?.count ?? 0) {
-//            
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
-//            print(namedColorPalettes)
-//            let colorPalette = namedColorPalettes?[indexPath.row]
-//            cell.colorTitleInTopView.text = colorPalette?.name
-//            cell.colorTitleInTopView.textColor = UIColor(hex: colorPalette?.colors.first ?? "#FFFFFF")
-//            cell.colorTitleInColorSideBar.text = colorPalette?.name
-//            cell.colorTitleInColorSideBar.textColor = .white
-//            cell.hexaCodeInColorSideBar.text = colorPalette?.colors.first
-//            cell.hexaCodeInColorSideBar.textColor = .white
-//            cell.ellipsisButtonInColorSideBar.tintColor = .white
-//            cell.colorSideBarContainer.backgroundColor = UIColor(hex: colorPalette?.colors.first ?? "#FFFFFF")
-//            cell.heartButtonInTopView.tintColor = UIColor(hex: colorPalette?.colors.first ?? "#FFFFFF")
-//            cell.underLine.backgroundColor = UIColor(hex: colorPalette?.colors.first ?? "#FFFFFF")
-//            
-//            // Pass the color palette data to the cell's collection view
-//            if let colorPalettes = colorPalettes {
-//                cell.configureCell(with: colorPalettes[indexPath.row].colors)
-//            }
-//            
-//            return cell}
-//        else {
-//            let bottomCell = tableView.dequeueReusableCell(withIdentifier: "BottomTableViewCell", for: indexPath) as! BottomTableViewCell
-//            bottomCell.titleInBottomViewTableCell.text = "Color"
-//            return bottomCell
-//        }
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if indexPath.row < (colorPalettes?.count ?? 0) {
-//            return 300 // HomeTableViewCell height
-//        } else {
-//            return 200 // BottomTableViewCell height
-//        }
-//    }
-//}
-//
-//    
-//    
-//    
-//    extension ViewController { //Here I register the Xib File
-//        func topBarFunction() {
-//            if let refrenceForViewTop = Bundle.main.loadNibNamed("TopBar", owner: self, options: nil)?[0] as? TopBar {
-//                topBarContainer.addSubview(refrenceForViewTop)
-//                refrenceForViewTop.frame.size.height = topBarContainer.frame.size.height
-//                refrenceForViewTop.frame.size.width = topBarContainer.frame.size.width
-//                topBar = refrenceForViewTop
-//                topBar?.title.text = "Home"
-//            }
-//        }
-//    }
-//    
-//    
-//    
-//
+
 import UIKit
 
 class ViewController: UIViewController {
@@ -148,7 +12,7 @@ class ViewController: UIViewController {
         return colorPalettes?.filter { $0.type == "Random Color" }
     }
 
-    var topBar: TopBar?
+  
     
     @IBOutlet weak var topBarContainer: UIView!
     @IBOutlet weak var tableviewAtHome: UITableView!
@@ -159,8 +23,10 @@ class ViewController: UIViewController {
         tableviewAtHome.delegate = self
         tableviewAtHome.showsVerticalScrollIndicator = false
         tableviewAtHome.showsHorizontalScrollIndicator = false
-
-       topBarFunction()
+        setupNavigationController()
+        setupSearchController()
+        
+      
         
         if let colorPalettesData = loadColorPalettes() {
             colorPalettes = colorPalettesData
@@ -233,14 +99,62 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate  {
     }
 }
 
- //MARK: - TopBar Function
+
+
+
+// MARK: - Navigation Controller Setup
 extension ViewController {
-    func topBarFunction() {
-        if let refrenceForViewTop = Bundle.main.loadNibNamed("TopBar", owner: self, options: nil)?[0] as? TopBar {
-            topBarContainer.addSubview(refrenceForViewTop)
-            refrenceForViewTop.frame = topBarContainer.bounds
-            topBar = refrenceForViewTop
-            topBar?.title.text = "Home"
-        }
+    func setupNavigationController() {
+        
+        
+        let titleLabel = UILabel()
+        titleLabel.text = "Home"
+        titleLabel.textColor = .white
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 40)
+        titleLabel.textAlignment = .center
+        titleLabel.sizeToFit()
+
+
+        navigationItem.titleView = titleLabel
+
+        let boldConfig = UIImage.SymbolConfiguration(weight: .bold)
+        let listImage = UIImage(systemName: "list.bullet", withConfiguration: boldConfig)
+        
+        let listButton = UIBarButtonItem(
+            image: listImage,
+            style: .plain,
+            target: self,
+            action: #selector(listButtonTapped)
+        )
+
+        listButton.tintColor = .white
+        navigationItem.rightBarButtonItem = listButton
+    }
+
+
+    @objc func listButtonTapped() {
+        print("List button tapped")
     }
 }
+
+// MARK: - Search Controller Setup
+extension ViewController: UISearchResultsUpdating {
+    func setupSearchController() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Colors"
+        searchController.searchBar.searchTextField.backgroundColor = UIColor.white
+    
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text, !text.isEmpty else {
+            return
+        }
+        print("Search Query: \(text)")
+    }
+}
+

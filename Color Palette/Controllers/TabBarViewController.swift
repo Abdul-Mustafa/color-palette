@@ -1,51 +1,46 @@
-
-
 import UIKit
 
-class TabBarViewController: UITabBarController {
-    
-    private let roundButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.backgroundColor = .lightGray
-        button.layer.cornerRadius = 30
-        button.layer.masksToBounds = true
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        // Configure the plus icon
-        let config = UIImage.SymbolConfiguration(pointSize: 30, weight: .black, scale: .large)
-        let plusImage = UIImage(systemName: "plus", withConfiguration: config)?.withRenderingMode(.alwaysTemplate)
-        button.setImage(plusImage, for: .normal)
-        button.tintColor = .white // Set the icon color
-        return button
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Add the floating button to the main view
-        self.view.addSubview(roundButton)
-        
-        // Attach an action
-        roundButton.addTarget(self, action: #selector(roundButtonTapped), for: .touchUpInside)
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        // Ensure the constraints are updated after layout
-        if let tabBarSuperview = self.tabBar.superview {
-            NSLayoutConstraint.deactivate(roundButton.constraints) // Remove any old constraints
-            
-            NSLayoutConstraint.activate([
-                roundButton.centerXAnchor.constraint(equalTo: tabBarSuperview.centerXAnchor), // Ensure same ancestor
-                roundButton.bottomAnchor.constraint(equalTo: self.tabBar.topAnchor, constant: 30), // Above tab bar
-                roundButton.widthAnchor.constraint(equalToConstant: 60),
-                roundButton.heightAnchor.constraint(equalToConstant: 60)
-            ])
+extension UITabBarController {
+    func configureThirdTabItem() {
+        if let items = tabBar.items, items.count > 2 {
+            let thirdTabItem = items[2]
+            thirdTabItem.image = UIImage(named: "Vector 1")?.withRenderingMode(.alwaysOriginal)
+            thirdTabItem.selectedImage = UIImage(named: "home_icon_filled")?.withRenderingMode(.alwaysOriginal)
+            thirdTabItem.imageInsets = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
         }
     }
-    
-    @objc func roundButtonTapped() {
-        print("Floating button tapped!")
-    }
 }
+
+class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureThirdTabItem()
+        self.delegate = self // Set the delegate to intercept tab selection
+    }
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+            if viewController is AddButtonViewController {
+                showBottomSheet()
+                return false // Prevent switching tabs
+            }
+            return true
+        }
+
+        private func showBottomSheet() {
+            print("showBottomSheet called")
+            let vc = AddButtonViewController()
+            vc.modalPresentationStyle = .pageSheet
+            
+
+            if let sheet = vc.sheetPresentationController {
+                let height = UIScreen.main.bounds.height / 2.1 // One-third of the screen
+                sheet.detents = [.custom { _ in height }]
+                sheet.prefersGrabberVisible = false // Show grabber handle
+                
+            }
+
+            present(vc, animated: true)
+        }
+    // Intercept tab selection
+
+}
+
