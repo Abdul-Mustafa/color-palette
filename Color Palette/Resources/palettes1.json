@@ -1,0 +1,240 @@
+{
+  "palettes": [
+    {
+      "type": "Nature-Inspired",
+      "name": "Forest Greens",
+      "colors": ["#98FB98", "#3CB371", "#2E8B57", "#6B8E23", "#556B2F"]
+    },
+    {
+      "type": "Nature-Inspired",
+      "name": "Autumn Leaves",
+      "colors": ["#FFD700", "#FFA07A", "#FF7F50", "#D2691E", "#8B4513"]
+    },
+    {
+      "type": "Nature-Inspired",
+      "name": "Tropical Paradise",
+      "colors": ["#ADFF2F", "#7FFF00", "#32CD32", "#00FF7F", "#00FA9A"]
+    },
+    {
+      "type": "Nature-Inspired",
+      "name": "Winter Wonderland",
+      "colors": ["#AFEEEE", "#B0E0E6", "#00CED1", "#4682B4", "#5F9EA0"]
+    },
+    {
+      "type": "Nature-Inspired",
+      "name": "Spring Blossoms",
+      "colors": ["#FFFAF0", "#FFDAB9", "#FFB7C5", "#98FB98", "#87CEFA"]
+    },
+    {
+      "type": "Vibrant & Bold",
+      "name": "Vibrant Neon",
+      "colors": ["#FFFF00", "#32CD32", "#00FA9A", "#FF4500", "#FF1493"]
+    },
+    {
+      "type": "Vibrant & Bold",
+      "name": "Berry Bliss",
+      "colors": ["#EE82EE", "#DA70D6", "#BA55D3", "#9370DB", "#8A2BE2"]
+    },
+    {
+      "type": "Vibrant & Bold",
+      "name": "Royal Elegance",
+      "colors": ["#C71585", "#9370DB", "#8A2BE2", "#6A5ACD", "#4B0082"]
+    },
+    {
+      "type": "Vibrant & Bold",
+      "name": "Rainbow",
+      "colors": ["#FFFF00", "#FF7F00", "#FF0000", "#0000FF", "#8B00FF", "#4B0082", "#00FF00"]
+    },
+    {
+      "type": "Vibrant & Bold",
+      "name": "Pastel Dreams",
+      "colors": ["#FFD1DC", "#FFB6C1", "#FF69B4", "#FF1493", "#DB7093"]
+    },
+    {
+      "type": "Elegant & Neutral",
+      "name": "Earth Tones",
+      "colors": ["#FFE4C4", "#F5DEB3", "#DEB887", "#CD853F", "#A0522D"]
+    },
+    {
+      "type": "Elegant & Neutral",
+      "name": "Neutral Shades",
+      "colors": ["#2F4F4F", "#696969", "#808080", "#A9A9A9", "#D3D3D3"]
+    },
+    {
+      "type": "Elegant & Neutral",
+      "name": "Vintage",
+      "colors": ["#EFECCA", "#A7A37E", "#E6E2AF", "#C3A79B", "#B76E79"]
+    },
+    {
+      "type": "Elegant & Neutral",
+      "name": "Metallic Shine",
+      "colors": ["#C0C0C0", "#D4AF37", "#B87333", "#808080", "#FFD700"]
+    },
+    {
+      "type": "Elegant & Neutral",
+      "name": "Classic Golds",
+      "colors": ["#DAA520", "#E6BE8A", "#FFB300", "#FFC107", "#FFD700"]
+    },
+    {
+      "type": "Named Colors",
+      "name": "Red",
+      "colors": ["#8B0000", "#A52A2A", "#B22222", "#DC143C", "#FF0000", "#FF4500", "#FF6347", "#FF7F50", "#FA8072", "#FFA07A"]
+
+    },
+    {
+      "type": "Named Colors",
+      "name": "Blue",
+      "colors": ["#00008B", "#0000CD", "#0000FF", "#1E90FF", "#4169E1", "#4682B4", "#5F9EA0", "#87CEEB", "#87CEFA", "#ADD8E6"]
+
+    },
+    {
+      "type": "Named Colors",
+      "name": "Green",
+      "colors": ["#006400", "#228B22", "#008000", "#2E8B57", "#3CB371", "#32CD32", "#00FF00", "#98FB98", "#90EE90", "#ADFF2F"]
+
+
+    },
+    {
+      "type": "Named Colors",
+      "name": "Pink",
+      "colors": ["#8B008B", "#800080", "#C71585", "#DB7093", "#FF1493", "#FF69B4", "#FFB6C1", "#FFC0CB", "#FFD1DC", "#FFE4E1"]
+
+    },
+    {
+      "type": "Random Color",
+      "name": "Cosmic Burst",
+      "colors": ["#FF1E88", "#4A90E2", "#50E3C2", "#F5A623", "#7ED321"]
+    },
+    {
+      "type": "Random Color",
+      "name": "Digital Wave",
+      "colors": ["#9B51E0", "#FF3366", "#00C6FF", "#2ECE9D", "#FFD93D"]
+    },
+    {
+      "type": "Random Color",
+      "name": "Urban Splash",
+      "colors": ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEEAD"]
+    },
+    {
+      "type": "Random Color",
+      "name": "Neon Nights",
+      "colors": ["#FF0099", "#00FF87", "#00B4FF", "#7B61FF", "#FFE700"]
+    },
+    {
+      "type": "Random Color",
+      "name": "Pop Art",
+      "colors": ["#FF3D7F", "#3FB8AF", "#FF9E2C", "#4876FF", "#7FFF00"]
+    }
+    ,
+    {
+          "type": "Nature-Inspired",
+          "name": "Forest Greens",
+          "colors": ["#98FB98", "#3CB371", "#2E8B57", "#6B8E23", "#556B2F"]
+        },
+        {
+          "type": "Nature-Inspired",
+          "name": "Autumn Leaves",
+          "colors": ["#FFD700", "#FFA07A", "#FF7F50", "#D2691E", "#8B4513"]
+        },
+        {
+          "type": "Nature-Inspired",
+          "name": "Tropical Paradise",
+          "colors": ["#ADFF2F", "#7FFF00", "#32CD32", "#00FF7F", "#00FA9A"]
+        },
+        {
+          "type": "Nature-Inspired",
+          "name": "Winter Wonderland",
+          "colors": ["#AFEEEE", "#B0E0E6", "#00CED1", "#4682B4", "#5F9EA0"]
+        },
+        {
+          "type": "Nature-Inspired",
+          "name": "Spring Blossoms",
+          "colors": ["#FFFAF0", "#FFDAB9", "#FFB7C5", "#98FB98", "#87CEFA"]
+        },
+        {
+          "type": "Vibrant & Bold",
+          "name": "Vibrant Neon",
+          "colors": ["#FFFF00", "#32CD32", "#00FA9A", "#FF4500", "#FF1493"]
+        },
+        {
+          "type": "Vibrant & Bold",
+          "name": "Berry Bliss",
+          "colors": ["#EE82EE", "#DA70D6", "#BA55D3", "#9370DB", "#8A2BE2"]
+        },
+        {
+          "type": "Vibrant & Bold",
+          "name": "Royal Elegance",
+          "colors": ["#C71585", "#9370DB", "#8A2BE2", "#6A5ACD", "#4B0082"]
+        },
+        {
+          "type": "Vibrant & Bold",
+          "name": "Rainbow",
+          "colors": ["#FFFF00", "#FF7F00", "#FF0000", "#0000FF", "#8B00FF", "#4B0082", "#00FF00"]
+        },
+        {
+          "type": "Vibrant & Bold",
+          "name": "Pastel Dreams",
+          "colors": ["#FFD1DC", "#FFB6C1", "#FF69B4", "#FF1493", "#DB7093"]
+        },
+        {
+          "type": "Elegant & Neutral",
+          "name": "Earth Tones",
+          "colors": ["#FFE4C4", "#F5DEB3", "#DEB887", "#CD853F", "#A0522D"]
+        },
+        {
+          "type": "Elegant & Neutral",
+          "name": "Neutral Shades",
+          "colors": ["#2F4F4F", "#696969", "#808080", "#A9A9A9", "#D3D3D3"]
+        },
+        {
+          "type": "Elegant & Neutral",
+          "name": "Vintage",
+          "colors": ["#EFECCA", "#A7A37E", "#E6E2AF", "#C3A79B", "#B76E79"]
+        },
+        {
+          "type": "Elegant & Neutral",
+          "name": "Metallic Shine",
+          "colors": ["#C0C0C0", "#D4AF37", "#B87333", "#808080", "#FFD700"]
+        },
+        {
+          "type": "Elegant & Neutral",
+          "name": "Classic Golds",
+          "colors": ["#DAA520", "#E6BE8A", "#FFB300", "#FFC107", "#FFD700"]
+        },
+        {
+          "type": "Industry-Specific",
+          "name": "Corporate & Professional",
+          "colors": ["#4682B4", "#A9A9A9", "#FFFFFF"]
+        },
+        {
+          "type": "Industry-Specific",
+          "name": "Luxury & High-End",
+          "colors": ["#000000", "#FFD700", "#4B0082"]
+        },
+        {
+          "type": "Industry-Specific",
+          "name": "Tech & Innovation",
+          "colors": ["#1E90FF", "#32CD32", "#8A2BE2"]
+        },
+        {
+          "type": "Industry-Specific",
+          "name": "Eco & Sustainability",
+          "colors": ["#228B22", "#8B4513", "#F5F5DC"]
+        },
+        {
+          "type": "Industry-Specific",
+          "name": "Fashion & Beauty",
+          "colors": ["#FFC0CB", "#D8BFD8", "#F5F5F5"]
+        },
+        {
+          "type": "Industry-Specific",
+          "name": "Food & Beverage",
+          "colors": ["#FF4500", "#FFA500", "#FFD700"]
+        },
+        {
+          "type": "Industry-Specific",
+          "name": "Education & Learning",
+          "colors": ["#FF0000", "#0000FF", "#008000"]
+        }
+  ]
+}

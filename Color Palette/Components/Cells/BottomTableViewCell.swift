@@ -54,7 +54,10 @@ class BottomTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: 100, height: 132) // Set the desired size
-        }
-
+        let collectionViewWidth = collectionView.bounds.width
+        let relativeWidth = collectionViewWidth * 0.25 // 50% of the collection view's width
+        let relativeHeight = relativeWidth * 1.3 // Maintaining a 1:1.32 aspect ratio, for example
+        
+        return CGSize(width: relativeWidth, height: relativeHeight)
+    }
 }

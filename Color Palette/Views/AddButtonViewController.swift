@@ -6,8 +6,10 @@ class AddButtonViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupUI()
+        
     }
-    
+ 
+ 
     private func setupUI() {
         // Title Label
         let titleLabel = UILabel()

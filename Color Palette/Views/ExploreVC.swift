@@ -3,22 +3,45 @@
 import UIKit
 
 
-class ExploreVC: UIViewController {
+class ExploreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return colorPalettesKeys.count
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreTableViewCell", for: indexPath) as! ExploreTableViewCell
+        cell.colorNameAtTop.text = colorPalettesKeys[indexPath.row]
+       // print(colorPalettesKeys[indexPath.row])
+       // print(colorPalettes?[colorPalettesKeys[indexPath.row]])
+        cell.configureCell(with: colorPalettes?[colorPalettesKeys[indexPath.row]])
+        return cell
+    }
     
-
-
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+         // Height depends on row
+        return tableView.frame.width * 0.5
+        }
+    
+    var colorPalettes: [String : [ColorPalette]]?
+    var colorPalettesKeys: [String] = []
     @IBOutlet weak var SubView: UIView!
     
+    @IBOutlet weak var tableViewInExploreVC: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationController()
         setupSearchController()
-        // update xib inside viewTop
-   
+        tableViewInExploreVC.dataSource = self
+        tableViewInExploreVC.delegate = self
+        
+        let manager = ColorPaletteManager.shared
 
-    
-
+              // Get all palettes
+        let allPalettes = manager.getAllPalettes()
+        colorPalettes = allPalettes
+        
+        colorPalettesKeys = Array(allPalettes.keys)
+        
         
 
     }

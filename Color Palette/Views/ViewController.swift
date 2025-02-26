@@ -2,69 +2,93 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var colorPalettes: [ColorPalette]?
+//  var colorPalettes: [ColorPalette]?
+    var colorPalettes: [String : [ColorPalette]] = [:]
+    var namedColors:[ColorPalette]?
+    var randomColors:[ColorPalette]?
+   // var fixedScreenSize: CGSize = UIScreen.main.bounds.size
+//    private var namedColorPalettes: [ColorPalette]? {
+//        return colorPalettes?.filter { $0.type == "Named Colors" }
+//    }
+//    
+//    private var randomColorPalettes: [ColorPalette]? {
+//        return colorPalettes?.filter { $0.type == "Random Color" }
+//    }
     
-    private var namedColorPalettes: [ColorPalette]? {
-        return colorPalettes?.filter { $0.type == "Named Colors" }
-    }
-    
-    private var randomColorPalettes: [ColorPalette]? {
-        return colorPalettes?.filter { $0.type == "Random Color" }
-    }
-
+  
+     
   
     
     @IBOutlet weak var topBarContainer: UIView!
     @IBOutlet weak var tableviewAtHome: UITableView!
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+//        coordinator.animate(alongsideTransition: nil) { _ in
+//        self.tableviewAtHome.frame.size = self.fixedScreenSize
+//        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+     //   tableviewAtHome.frame.size = fixedScreenSize
         tableviewAtHome.dataSource = self
         tableviewAtHome.delegate = self
         tableviewAtHome.showsVerticalScrollIndicator = false
         tableviewAtHome.showsHorizontalScrollIndicator = false
         setupNavigationController()
         setupSearchController()
+        let manager = ColorPaletteManager.shared
+
+              // Get all palettes
+              let allPalettes = manager.getAllPalettes()
+        let namedColorsFromDataManager = manager.getPalettes(forCategory: "Named Colors")
+        let randomColorsFromDataManager = manager.getPalettes(forCategory: "Random Color")
+            namedColors = namedColorsFromDataManager
+            randomColors = randomColorsFromDataManager
+                colorPalettes = allPalettes
+       // print("This is the array \(namedColors)")
+      //  print("These are random colors \(randomColors)")
+//        if let colorPalettesData = loadColorPalettes() {
+//            colorPalettes = colorPalettesData
+//            DispatchQueue.main.async {
+//                self.tableviewAtHome.reloadData()
+//            }
+//        }
         
-      
-        
-        if let colorPalettesData = loadColorPalettes() {
-            colorPalettes = colorPalettesData
-            DispatchQueue.main.async {
-                self.tableviewAtHome.reloadData()
-            }
-        }
     }
     
-    func loadColorPalettes() -> [ColorPalette]? {
-        guard let path = Bundle.main.path(forResource: "palettes", ofType: "json") else { return nil }
-
-        do {
-            let jsonData = try Data(contentsOf: URL(fileURLWithPath: path))
-            let decoder = JSONDecoder()
-            let decodedData = try decoder.decode(ColorPalettesData.self, from: jsonData)
-            
-            return decodedData.palettes
-        } catch {
-            print("Error decoding JSON: \(error.localizedDescription)")
-            return nil
-        }
-    }
+//    func loadColorPalettes() -> [ColorPalette]? {
+//        guard let path = Bundle.main.path(forResource: "palettes", ofType: "json") else { return nil }
+//
+//        do {
+//            let jsonData = try Data(contentsOf: URL(fileURLWithPath: path))
+//            let decoder = JSONDecoder()
+//            let decodedData = try decoder.decode(ColorPalettesData.self, from: jsonData)
+//            
+//            return decodedData.palettes
+//        } catch {
+//            print("Error decoding JSON: \(error.localizedDescription)")
+//            return nil
+//        }
+//    }
 }
 
-// MARK: - TableView Delegate & DataSource
+ // MARK: - TableView Delegate & DataSource
 extension ViewController: UITableViewDataSource, UITableViewDelegate  {
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (namedColorPalettes?.count ?? 0) + (randomColorPalettes?.count ?? 0)
+        let totalRows = (namedColors?.count ?? 0) + (randomColors?.count ?? 0)
+        
+        return totalRows
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let namedCount = namedColorPalettes?.count ?? 0
+        
 
-        if indexPath.row < namedCount {
+        if indexPath.row < namedColors?.count ?? 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
-            let colorPalette = namedColorPalettes?[indexPath.row]
+            let colorPalette = namedColors?[indexPath.row]
             
             cell.colorTitleInTopView.text = colorPalette?.name
             cell.colorTitleInTopView.textColor = UIColor(hex: colorPalette?.colors.first ?? "#FFFFFF")
@@ -80,21 +104,23 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate  {
             
             return cell
         } else {
-            let randomIndex = indexPath.row - namedCount
+            let randomIndex = indexPath.row - (namedColors?.count ?? 0)
+            
             let bottomCell = tableView.dequeueReusableCell(withIdentifier: "BottomTableViewCell", for: indexPath) as! BottomTableViewCell
-            let randomColorName = randomColorPalettes?[randomIndex].name
+            let randomColorName = randomColors?[randomIndex].name
+          
             bottomCell.titleInBottomViewTableCell.text = randomColorName ?? "Color"
-            let randomColors = randomColorPalettes?[randomIndex].colors ?? ["Color"]
+            let randomColors = randomColors?[randomIndex].colors ?? ["Color"]
             bottomCell.configureCell(with: randomColors)
             return bottomCell
         }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row < (namedColorPalettes?.count ?? 0) {
-            return 300
+        if indexPath.row < namedColors?.count ?? 0  {
+            return tableView.frame.width * 0.8
         } else {
-            return 200
+            return tableView.frame.width * 0.4
         }
     }
 }
@@ -156,5 +182,6 @@ extension ViewController: UISearchResultsUpdating {
         }
         print("Search Query: \(text)")
     }
+    
 }
 
