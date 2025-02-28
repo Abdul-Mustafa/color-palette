@@ -47,6 +47,30 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
         cell.colorCodeInBottomCenterInCollectionViewCell.textColor = textColor
         cell.ellipsisButtonInCollectionViewCell.tintColor = textColor
         cell.backgroundColor = backgroundColor
+        // Define UIActions with images from Assets
+        let favAction = UIAction(title: "Fav", image: UIImage(systemName: "heart")) { _ in
+            print("Fav tapped for \(colorName)")
+        }
+        
+        let lockAction = UIAction(title: "Lock", image: UIImage(systemName: "lock")) { _ in
+            print("Lock tapped for \(colorName)")
+        }
+        
+        let copyAction = UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc")) { _ in
+            UIPasteboard.general.string = colorName
+            print("Copied \(colorName)")
+        }
+        
+        let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+            let activityVC = UIActivityViewController(activityItems: [colorName], applicationActivities: nil)
+            if let viewController = collectionView.window?.rootViewController {
+                viewController.present(activityVC, animated: true)
+            }
+        }
+        
+        // Assign the menu to the button
+        cell.ellipsisButtonInCollectionViewCell.menu = UIMenu(children: [favAction, lockAction, copyAction, shareAction])
+        cell.ellipsisButtonInCollectionViewCell.showsMenuAsPrimaryAction = true
        
         return cell
     }
