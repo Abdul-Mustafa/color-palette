@@ -55,6 +55,7 @@ class MoreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         setupSearchController()
         
         isRotated = UIDevice.current.orientation.isLandscape
+        print(isRotated)
     }
 
     

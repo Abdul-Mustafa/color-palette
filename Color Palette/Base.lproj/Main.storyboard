@@ -508,7 +508,7 @@
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="bold"/>
                                                             </buttonConfiguration>
                                                             <connections>
-                                                                <action selector="actionForHeartButtonInTopView:" destination="h5q-pr-U7n" eventType="touchUpInside" id="cfJ-mz-dji"/>
+                                                                <action selector="actionHeartButtonInAtTopInHomeViewTable:" destination="h5q-pr-U7n" eventType="touchUpInside" id="4GJ-bG-foL"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>

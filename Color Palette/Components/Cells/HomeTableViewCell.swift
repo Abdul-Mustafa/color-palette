@@ -24,13 +24,17 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.isScrollEnabled = false
+      
     }
-
+    @IBAction func actionHeartButtonInAtTopInHomeViewTable(_ sender: UIButton) {
+        print(sender)
+    }
+    
     // Set the color palettes data for the collection view
     func configureCell(with colorPalettes: [String]) {
         self.colorPalettes = colorPalettes
-        
         collectionView.reloadData() // Refresh collection view
+        
     }
 
     // UICollectionViewDataSource Methods

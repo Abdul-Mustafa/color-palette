@@ -102,6 +102,34 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate  {
             cell.underLine.backgroundColor = UIColor(hex: colorPalette?.colors.first ?? "#FFFFFF")
             cell.configureCell(with: colorPalette?.colors ?? [])
             
+            let favAction = UIAction(title: "Fav", image: UIImage(systemName: "heart")) { _ in
+                print("Fav tapped for (colorName)")
+            }
+            
+            let lockAction = UIAction(title: "Lock", image: UIImage(systemName: "lock")) { _ in
+                print("Lock tapped for (colorName)")
+            }
+            
+            let copyAction = UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc")) { _ in
+               // UIPasteboard.general.string = colorName
+                print("Copied (colorName)")
+            }
+            
+            let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+//                let activityVC = UIActivityViewController(activityItems: [colorName], applicationActivities: nil)
+//                if let viewController = collectionView.window?.rootViewController {
+//                    viewController.present(activityVC, animated: true)
+                //}
+            }
+            
+            // Assign the menu to the button
+            cell.ellipsisButtonInColorSideBar.menu = UIMenu(children: [favAction, lockAction, copyAction, shareAction])
+            cell.ellipsisButtonInColorSideBar.showsMenuAsPrimaryAction = true
+            
+            
+            
+            
+            
             return cell
         } else {
             let randomIndex = indexPath.row - (namedColors?.count ?? 0)
@@ -123,6 +151,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate  {
             return tableView.frame.width * 0.4
         }
     }
+    
+    
+    
 }
 
 

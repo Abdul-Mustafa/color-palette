@@ -36,7 +36,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
             hideSecondTab()
         } else {
             // Restore original layout if coming from hidden state
-            if isSecondTabHidden {
+            if isSecondTabHidden && index != 3  {
                 restoreOriginalLayout()
             }
             
@@ -101,7 +101,11 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
         
         if let sheet = vc.sheetPresentationController {
             let height = UIScreen.main.bounds.height / 2.1
-            sheet.detents = [.custom { _ in height }]
+            if #available(iOS 16.0, *) {
+                sheet.detents = [.custom { _ in height }]
+            } else {
+                // Fallback on earlier versions
+            }
             sheet.prefersGrabberVisible = false
             sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
         }
