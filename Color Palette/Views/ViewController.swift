@@ -72,6 +72,10 @@ class ViewController: UIViewController {
 //            return nil
 //        }
 //    }
+    
+
+    
+
 }
 
  // MARK: - TableView Delegate & DataSource
@@ -125,11 +129,18 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate  {
             // Assign the menu to the button
             cell.ellipsisButtonInColorSideBar.menu = UIMenu(children: [favAction, lockAction, copyAction, shareAction])
             cell.ellipsisButtonInColorSideBar.showsMenuAsPrimaryAction = true
+            cell.buttonAction = {
+                if let namedColors = self.namedColors, indexPath.row < namedColors.count {
+                    CoreDataManager.shared.savePalette(namedColors[indexPath.row])
+                    
+//                    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//                    deleteAllData(in: context)
+                fetchSavedData()
+                }
+                               
+            }
             
-            
-            
-            
-            
+           
             return cell
         } else {
             let randomIndex = indexPath.row - (namedColors?.count ?? 0)

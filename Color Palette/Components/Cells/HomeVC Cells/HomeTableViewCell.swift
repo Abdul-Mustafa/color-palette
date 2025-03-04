@@ -5,7 +5,7 @@ import UIKit
 class HomeTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     var colorPalettes: [String]?
-    
+    var buttonAction: (() -> Void)?
 
     // TopView
     @IBOutlet weak var colorSideBarContainer: UIView!
@@ -26,8 +26,9 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
         collectionView.isScrollEnabled = false
       
     }
-    @IBAction func actionHeartButtonInAtTopInHomeViewTable(_ sender: UIButton) {
-        print(sender)
+
+    @IBAction func saveNamedColorsToCoreData(_ sender: UIButton) {
+        buttonAction?()
     }
     
     // Set the color palettes data for the collection view
