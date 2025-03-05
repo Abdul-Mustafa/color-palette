@@ -448,7 +448,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeTableViewCell" rowHeight="235" id="OGX-8P-yQg" customClass="HomeTableViewCell" customModule="Color_Palette" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopTableViewCellInCollectionVC" rowHeight="235" id="OGX-8P-yQg" customClass="TopTableViewCellInCollectionVC" customModule="Color_Palette" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="373" height="235"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OGX-8P-yQg" id="Tq1-C4-H6b">
@@ -470,9 +470,6 @@
                                                             <buttonConfiguration key="configuration" style="plain" image="suit.heart" catalog="system">
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="bold"/>
                                                             </buttonConfiguration>
-                                                            <connections>
-                                                                <action selector="saveNamedColorsToCoreData:" destination="OGX-8P-yQg" eventType="touchUpInside" id="IJu-Oj-bbH"/>
-                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -509,9 +506,6 @@
                                                             <rect key="frame" x="12.666666666666686" y="52.666666666666671" width="48" height="35"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="ellipsis" catalog="system"/>
-                                                            <connections>
-                                                                <action selector="actionForEllipsisButtonInColorSideBar:" destination="OGX-8P-yQg" eventType="touchUpInside" id="kgD-UQ-xl0"/>
-                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemGreenColor"/>
@@ -534,7 +528,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeCollectionViewCell" id="NvZ-du-jYg" customClass="HomeCollectionViewCell" customModule="Color_Palette" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TopCollectionViewCellInCollectionVC" id="NvZ-du-jYg" customClass="TopCollectionViewCellInCollectionVC" customModule="Color_Palette" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="124" height="133"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="y2F-ev-Pcb">
@@ -562,9 +556,8 @@
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="124" height="133"/>
                                                             <connections>
-                                                                <outlet property="ActionForEllipsisButtonInCollectionViewCell" destination="L3O-Jv-Ts4" id="7Pz-WP-ago"/>
-                                                                <outlet property="colorCodeInBottomCenterInCollectionViewCell" destination="8Oa-oR-bSk" id="QQt-E0-QSf"/>
-                                                                <outlet property="ellipsisButtonInCollectionViewCell" destination="L3O-Jv-Ts4" id="Xd5-e3-LKY"/>
+                                                                <outlet property="colorCodeInBottomCenterInCollectionViewCell" destination="8Oa-oR-bSk" id="xVT-Cy-diA"/>
+                                                                <outlet property="ellipsisButtonInCollectionViewCell" destination="L3O-Jv-Ts4" id="BSJ-yN-eQZ"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -593,17 +586,17 @@
                                             <constraint firstItem="1Az-pS-NAO" firstAttribute="height" secondItem="OGX-8P-yQg" secondAttribute="height" multiplier="0.170213" id="4E0-RI-4yE"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="collectionView" destination="Le3-HM-VTl" id="Smo-80-xDm"/>
-                                            <outlet property="colorSideBarContainer" destination="Zyg-2n-HG6" id="xux-NA-Yy9"/>
-                                            <outlet property="colorTitleInColorSideBar" destination="K7C-9U-N2u" id="Erp-hd-eLM"/>
-                                            <outlet property="colorTitleInTopView" destination="Moq-S4-s9e" id="uPt-Q8-ybj"/>
-                                            <outlet property="ellipsisButtonInColorSideBar" destination="xSc-1y-sKQ" id="L8I-F3-xWm"/>
-                                            <outlet property="heartButtonInTopView" destination="gHU-XN-4Fb" id="vyb-o0-M17"/>
-                                            <outlet property="hexaCodeInColorSideBar" destination="YR8-0P-1km" id="nYs-5T-Xfb"/>
-                                            <outlet property="underLine" destination="XNM-IF-ctq" id="u1S-Cf-uFL"/>
+                                            <outlet property="colorSideBarContainer" destination="Zyg-2n-HG6" id="Avl-Rp-B2F"/>
+                                            <outlet property="colorTitleInColorSideBar" destination="K7C-9U-N2u" id="reo-Yg-OD8"/>
+                                            <outlet property="colorTitleInTopView" destination="Moq-S4-s9e" id="kja-qg-fRp"/>
+                                            <outlet property="ellipsisButtonInColorSideBar" destination="xSc-1y-sKQ" id="faQ-sx-BSt"/>
+                                            <outlet property="heartButtonInTopView" destination="gHU-XN-4Fb" id="Cqm-Mb-vQP"/>
+                                            <outlet property="hexaCodeInColorSideBar" destination="YR8-0P-1km" id="w1w-BQ-Bs6"/>
+                                            <outlet property="topCollectionviewInCollectionVC" destination="Le3-HM-VTl" id="xVE-Co-dT1"/>
+                                            <outlet property="underLine" destination="XNM-IF-ctq" id="N5a-ai-VFD"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BottomTableViewCell" rowHeight="202" id="X5m-mC-gXS" customClass="BottomTableViewCell" customModule="Color_Palette" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BottomTableViewCellInCollectionVC" rowHeight="202" id="X5m-mC-gXS" customClass="BottomTableViewCellInCollectionVC" customModule="Color_Palette" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="285" width="373" height="202"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X5m-mC-gXS" id="9jg-Rq-NHb">
@@ -645,7 +638,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BottomCollectionViewCell" id="nkM-if-KwD" customClass="BottomCollectionViewCell" customModule="Color_Palette" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BottomCollectionViewCellInCollectionVC" id="nkM-if-KwD" customClass="BottomCollectionViewCellInCollectionVC" customModule="Color_Palette" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="111" height="107"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -689,8 +682,8 @@
                                                                 <constraint firstAttribute="trailing" secondItem="kYb-YG-pmy" secondAttribute="trailing" id="qPt-kj-3hr"/>
                                                             </constraints>
                                                             <connections>
-                                                                <outlet property="colorNameInHexaCodeFormatInBottomCollectionViewCell" destination="nbH-Nl-xBD" id="4ur-8q-Szh"/>
-                                                                <outlet property="colorViewInBottomCollectionViewCell" destination="8ba-Iw-Qub" id="tR7-bd-nUF"/>
+                                                                <outlet property="colorNameInHexaCodeFormatInBottomCollectionViewCell" destination="nbH-Nl-xBD" id="ZIG-Zb-KTj"/>
+                                                                <outlet property="colorViewInBottomCollectionViewCell" destination="8ba-Iw-Qub" id="7S7-Ov-ga2"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -710,9 +703,8 @@
                                             <constraint firstItem="I58-Rt-vO8" firstAttribute="height" secondItem="X5m-mC-gXS" secondAttribute="height" multiplier="0.247525" id="DM5-qw-qV5"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="bottomCollectionView" destination="u41-Ay-Zag" id="DHw-z2-lwS"/>
-                                            <outlet property="collectionView" destination="u41-Ay-Zag" id="Qud-nr-tBA"/>
-                                            <outlet property="titleInBottomViewTableCell" destination="bmD-AJ-OGJ" id="qHx-H3-NW8"/>
+                                            <outlet property="bottomCollectionViewInCollectonVC" destination="u41-Ay-Zag" id="Yps-vv-KZl"/>
+                                            <outlet property="titleInBottomViewTableCell" destination="bmD-AJ-OGJ" id="nff-7j-G1l"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -728,9 +720,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SpX-mq-LNl"/>
-                    <connections>
-                        <outlet property="SubView" destination="6DQ-AV-Wob" id="mip-8k-Xp4"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1bZ-j8-8Xk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1134,7 +1123,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="A1d-yx-wix" kind="relationship" relationship="rootViewController" id="ZDy-BT-Fjb"/>
+                        <segue destination="A1d-yx-wix" kind="relationship" relationship="rootViewController" id="T5U-Kw-KKu"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GwY-GK-Z8r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

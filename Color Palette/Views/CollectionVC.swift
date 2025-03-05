@@ -16,6 +16,7 @@ class CollectionVC: UIViewController {
 
     @IBOutlet weak var SubView: UIView!
     
+    @IBOutlet weak var tableViewInCollectonVC: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationController()
