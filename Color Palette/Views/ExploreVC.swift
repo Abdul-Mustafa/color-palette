@@ -57,7 +57,7 @@ extension ExploreVC {
         
         
         let titleLabel = UILabel()
-        titleLabel.text = "Home"
+        titleLabel.text = "Explore"
         titleLabel.textColor = .white
         titleLabel.font = UIFont.boldSystemFont(ofSize: 40)
         titleLabel.textAlignment = .center

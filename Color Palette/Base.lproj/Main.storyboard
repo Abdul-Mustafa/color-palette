@@ -471,7 +471,7 @@
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="bold"/>
                                                             </buttonConfiguration>
                                                             <connections>
-                                                                <action selector="DeleteNamedColorsToCoreData:" destination="OGX-8P-yQg" eventType="touchUpInside" id="oQ2-6u-DBp"/>
+                                                                <action selector="heartButtonTapped:" destination="OGX-8P-yQg" eventType="touchUpInside" id="DC8-O2-hlL"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
