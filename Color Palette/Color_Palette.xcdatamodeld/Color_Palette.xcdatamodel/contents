@@ -4,4 +4,7 @@
         <attribute name="colors" optional="YES" attributeType="Transformable"/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="SingleColor" representedClassName="SingleColor" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
 </model>

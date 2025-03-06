@@ -9,12 +9,16 @@
 /* Begin PBXBuildFile section */
 		046474182D784F3700BF5DDE /* FavNamedColorPalettes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046474162D784F3700BF5DDE /* FavNamedColorPalettes+CoreDataClass.swift */; };
 		046474192D784F3700BF5DDE /* FavNamedColorPalettes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046474172D784F3700BF5DDE /* FavNamedColorPalettes+CoreDataProperties.swift */; };
+		046474772D79A25800BF5DDE /* SingleColor+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046474752D79A25800BF5DDE /* SingleColor+CoreDataClass.swift */; };
+		046474782D79A25800BF5DDE /* SingleColor+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046474762D79A25800BF5DDE /* SingleColor+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		043F9A712D55E5E700564913 /* Color Palette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Color Palette.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		046474162D784F3700BF5DDE /* FavNamedColorPalettes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavNamedColorPalettes+CoreDataClass.swift"; sourceTree = "<group>"; };
 		046474172D784F3700BF5DDE /* FavNamedColorPalettes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavNamedColorPalettes+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		046474752D79A25800BF5DDE /* SingleColor+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SingleColor+CoreDataClass.swift"; sourceTree = "<group>"; };
+		046474762D79A25800BF5DDE /* SingleColor+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SingleColor+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -52,6 +56,8 @@
 		043F9A682D55E5E700564913 = {
 			isa = PBXGroup;
 			children = (
+				046474752D79A25800BF5DDE /* SingleColor+CoreDataClass.swift */,
+				046474762D79A25800BF5DDE /* SingleColor+CoreDataProperties.swift */,
 				046474162D784F3700BF5DDE /* FavNamedColorPalettes+CoreDataClass.swift */,
 				046474172D784F3700BF5DDE /* FavNamedColorPalettes+CoreDataProperties.swift */,
 				043F9A732D55E5E700564913 /* Color Palette */,
@@ -141,6 +147,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				046474772D79A25800BF5DDE /* SingleColor+CoreDataClass.swift in Sources */,
+				046474782D79A25800BF5DDE /* SingleColor+CoreDataProperties.swift in Sources */,
 				046474182D784F3700BF5DDE /* FavNamedColorPalettes+CoreDataClass.swift in Sources */,
 				046474192D784F3700BF5DDE /* FavNamedColorPalettes+CoreDataProperties.swift in Sources */,
 			);

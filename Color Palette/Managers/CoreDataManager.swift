@@ -1,20 +1,198 @@
+////
+////  CoreDataManager.swift
+////  Color Palette
+////
+////  Created by mac on 03/03/2025.
+////
 //
-//  CoreDataManager.swift
-//  Color Palette
+////import CoreData
+////import UIKit
 //
-//  Created by mac on 03/03/2025.
+////class CoreDataManager {
+////    static let shared = CoreDataManager()
+////    
+////    private init() {}
+////    
+////    lazy var persistentContainer: NSPersistentContainer = {
+////        let container = NSPersistentContainer(name: "Color_Palette") // Make sure the name matches your xcdatamodeld file
+////        container.loadPersistentStores { (_, error) in
+////            if let error = error {
+////                fatalError("Failed to load Core Data stack: \(error)")
+////            }
+////        }
+////        return container
+////    }()
+////    
+////    var context: NSManagedObjectContext {
+////        return persistentContainer.viewContext
+////    }
+////    
+////    func savePalette(_ palette: ColorPalette, in context: NSManagedObjectContext? = nil) {
+////            let saveContext = context ?? self.context // Use provided context or default to viewContext
+////            do {
+////                let fetchRequest = NSFetchRequest<FavNamedColorPalettes>(entityName: "FavNamedColorPalettes")
+////                fetchRequest.predicate = NSPredicate(format: "name == %@", palette.name)
+////                fetchRequest.fetchLimit = 1
+////                
+////                let results = try saveContext.fetch(fetchRequest)
+////                
+////                if results.isEmpty {
+////                    let favorite = FavNamedColorPalettes(context: saveContext)
+////                    favorite.name = palette.name
+////                    favorite.colors = palette.colors as NSObject // Adjust if colors is [String]
+////                    try saveContext.save()
+////                    print("Palette '\(palette.name)' saved successfully.")
+////                } else {
+////                    print("Palette '\(palette.name)' already exists.")
+////                }
+////            } catch {
+////                print("Error saving palette: \(error)")
+////            }
+////        }
+////    
+////    func fetchFavorites() -> [FavNamedColorPalettes] {
+////        let request: NSFetchRequest<FavNamedColorPalettes> = FavNamedColorPalettes.fetchRequest()
+////        
+////        do {
+////            let favorites = try context.fetch(request)
+////            
+////            // Force load faulted data
+////            for favorite in favorites {
+////                context.refresh(favorite, mergeChanges: true) // Ensures attributes are loaded
+////                _ = favorite.colors // Access colors to trigger fetching
+////            }
+////            
+////            return favorites
+////        } catch {
+////            print("Failed to fetch favorites: \(error)")
+////            return []
+////        }
+////    }
+////
+////    
+////    private func saveContext() {
+////        do {
+////            try context.save()
+////        } catch {
+////            print("Failed to save: \(error)")
+////        }
+////    }
+////}
+////
+////  CoreDataManager.swift
+////  Color Palette
+////
+////  Created by mac on 03/03/2025.
+////
 //
-
+////import CoreData
+////import UIKit
+////
+////class CoreDataManager {
+////    static let shared = CoreDataManager()
+////    
+////    private init() {}
+////    
+////    lazy var persistentContainer: NSPersistentContainer = {
+////        let container = NSPersistentContainer(name: "Color_Palette") // Make sure the name matches your xcdatamodeld file
+////        container.loadPersistentStores { (_, error) in
+////            if let error = error {
+////                fatalError("Failed to load Core Data stack: \(error)")
+////            }
+////        }
+////        return container
+////    }()
+////    
+////    var context: NSManagedObjectContext {
+////        return persistentContainer.viewContext
+////    }
+////    
+////    func savePalette(_ palette: ColorPalette, in context: NSManagedObjectContext? = nil) {
+////        let saveContext = context ?? self.context // Use provided context or default to viewContext
+////        do {
+////            let fetchRequest = NSFetchRequest<FavNamedColorPalettes>(entityName: "FavNamedColorPalettes")
+////            fetchRequest.predicate = NSPredicate(format: "name == %@", palette.name)
+////            fetchRequest.fetchLimit = 1
+////            
+////            let results = try saveContext.fetch(fetchRequest)
+////            
+////            if results.isEmpty {
+////                let favorite = FavNamedColorPalettes(context: saveContext)
+////                favorite.name = palette.name
+////                favorite.colors = palette.colors as NSObject // Adjust if colors is [String]
+////                try saveContext.save()
+////                print("Palette '\(palette.name)' saved successfully.")
+////            } else {
+////                print("Palette '\(palette.name)' already exists.")
+////            }
+////        } catch {
+////            print("Error saving palette: \(error)")
+////        }
+////    }
+////    
+////    func fetchFavorites() -> [FavNamedColorPalettes] {
+////        let request: NSFetchRequest<FavNamedColorPalettes> = FavNamedColorPalettes.fetchRequest()
+////        
+////        do {
+////            let favorites = try context.fetch(request)
+////            
+////            // Force load faulted data
+////            for favorite in favorites {
+////                context.refresh(favorite, mergeChanges: true) // Ensures attributes are loaded
+////                _ = favorite.colors // Access colors to trigger fetching
+////            }
+////            
+////            return favorites
+////        } catch {
+////            print("Failed to fetch favorites: \(error)")
+////            return []
+////        }
+////    }
+////    
+////    // New method to delete a palette
+////    func deletePalette(_ palette: ColorPalette) {
+////        let deleteContext = context
+////        let fetchRequest = NSFetchRequest<FavNamedColorPalettes>(entityName: "FavNamedColorPalettes")
+////        fetchRequest.predicate = NSPredicate(format: "name == %@", palette.name ?? "")
+////        fetchRequest.fetchLimit = 1
+////        
+////        do {
+////            let results = try deleteContext.fetch(fetchRequest)
+////            if let favoriteToDelete = results.first {
+////                deleteContext.delete(favoriteToDelete)
+////                try deleteContext.save()
+////                print("Palette '\(palette.name ?? "unknown")' deleted successfully.")
+////            } else {
+////                print("No favorite found with name: \(palette.name ?? "unknown")")
+////            }
+////        } catch {
+////            print("Failed to delete palette: \(error)")
+////        }
+////    }
+////    
+////    private func saveContext() {
+////        do {
+////            try context.save()
+////        } catch {
+////            print("Failed to save: \(error)")
+////        }
+////    }
+////}
+//
+//
 //import CoreData
 //import UIKit
-
+//
 //class CoreDataManager {
 //    static let shared = CoreDataManager()
+//    
+//    // Notification name for palette changes
+//    static let paletteDidChangeNotification = Notification.Name("PaletteDidChangeNotification")
 //    
 //    private init() {}
 //    
 //    lazy var persistentContainer: NSPersistentContainer = {
-//        let container = NSPersistentContainer(name: "Color_Palette") // Make sure the name matches your xcdatamodeld file
+//        let container = NSPersistentContainer(name: "Color_Palette")
 //        container.loadPersistentStores { (_, error) in
 //            if let error = error {
 //                fatalError("Failed to load Core Data stack: \(error)")
@@ -28,87 +206,7 @@
 //    }
 //    
 //    func savePalette(_ palette: ColorPalette, in context: NSManagedObjectContext? = nil) {
-//            let saveContext = context ?? self.context // Use provided context or default to viewContext
-//            do {
-//                let fetchRequest = NSFetchRequest<FavNamedColorPalettes>(entityName: "FavNamedColorPalettes")
-//                fetchRequest.predicate = NSPredicate(format: "name == %@", palette.name)
-//                fetchRequest.fetchLimit = 1
-//                
-//                let results = try saveContext.fetch(fetchRequest)
-//                
-//                if results.isEmpty {
-//                    let favorite = FavNamedColorPalettes(context: saveContext)
-//                    favorite.name = palette.name
-//                    favorite.colors = palette.colors as NSObject // Adjust if colors is [String]
-//                    try saveContext.save()
-//                    print("Palette '\(palette.name)' saved successfully.")
-//                } else {
-//                    print("Palette '\(palette.name)' already exists.")
-//                }
-//            } catch {
-//                print("Error saving palette: \(error)")
-//            }
-//        }
-//    
-//    func fetchFavorites() -> [FavNamedColorPalettes] {
-//        let request: NSFetchRequest<FavNamedColorPalettes> = FavNamedColorPalettes.fetchRequest()
-//        
-//        do {
-//            let favorites = try context.fetch(request)
-//            
-//            // Force load faulted data
-//            for favorite in favorites {
-//                context.refresh(favorite, mergeChanges: true) // Ensures attributes are loaded
-//                _ = favorite.colors // Access colors to trigger fetching
-//            }
-//            
-//            return favorites
-//        } catch {
-//            print("Failed to fetch favorites: \(error)")
-//            return []
-//        }
-//    }
-//
-//    
-//    private func saveContext() {
-//        do {
-//            try context.save()
-//        } catch {
-//            print("Failed to save: \(error)")
-//        }
-//    }
-//}
-//
-//  CoreDataManager.swift
-//  Color Palette
-//
-//  Created by mac on 03/03/2025.
-//
-
-//import CoreData
-//import UIKit
-//
-//class CoreDataManager {
-//    static let shared = CoreDataManager()
-//    
-//    private init() {}
-//    
-//    lazy var persistentContainer: NSPersistentContainer = {
-//        let container = NSPersistentContainer(name: "Color_Palette") // Make sure the name matches your xcdatamodeld file
-//        container.loadPersistentStores { (_, error) in
-//            if let error = error {
-//                fatalError("Failed to load Core Data stack: \(error)")
-//            }
-//        }
-//        return container
-//    }()
-//    
-//    var context: NSManagedObjectContext {
-//        return persistentContainer.viewContext
-//    }
-//    
-//    func savePalette(_ palette: ColorPalette, in context: NSManagedObjectContext? = nil) {
-//        let saveContext = context ?? self.context // Use provided context or default to viewContext
+//        let saveContext = context ?? self.context
 //        do {
 //            let fetchRequest = NSFetchRequest<FavNamedColorPalettes>(entityName: "FavNamedColorPalettes")
 //            fetchRequest.predicate = NSPredicate(format: "name == %@", palette.name)
@@ -119,9 +217,12 @@
 //            if results.isEmpty {
 //                let favorite = FavNamedColorPalettes(context: saveContext)
 //                favorite.name = palette.name
-//                favorite.colors = palette.colors as NSObject // Adjust if colors is [String]
+//                favorite.colors = palette.colors as NSObject // Assuming colors is [String]
 //                try saveContext.save()
 //                print("Palette '\(palette.name)' saved successfully.")
+//                
+//                // Notify other view controllers
+//                NotificationCenter.default.post(name: CoreDataManager.paletteDidChangeNotification, object: nil)
 //            } else {
 //                print("Palette '\(palette.name)' already exists.")
 //            }
@@ -130,26 +231,6 @@
 //        }
 //    }
 //    
-//    func fetchFavorites() -> [FavNamedColorPalettes] {
-//        let request: NSFetchRequest<FavNamedColorPalettes> = FavNamedColorPalettes.fetchRequest()
-//        
-//        do {
-//            let favorites = try context.fetch(request)
-//            
-//            // Force load faulted data
-//            for favorite in favorites {
-//                context.refresh(favorite, mergeChanges: true) // Ensures attributes are loaded
-//                _ = favorite.colors // Access colors to trigger fetching
-//            }
-//            
-//            return favorites
-//        } catch {
-//            print("Failed to fetch favorites: \(error)")
-//            return []
-//        }
-//    }
-//    
-//    // New method to delete a palette
 //    func deletePalette(_ palette: ColorPalette) {
 //        let deleteContext = context
 //        let fetchRequest = NSFetchRequest<FavNamedColorPalettes>(entityName: "FavNamedColorPalettes")
@@ -162,11 +243,29 @@
 //                deleteContext.delete(favoriteToDelete)
 //                try deleteContext.save()
 //                print("Palette '\(palette.name ?? "unknown")' deleted successfully.")
+//                
+//                // Notify other view controllers
+//                NotificationCenter.default.post(name: CoreDataManager.paletteDidChangeNotification, object: nil)
 //            } else {
 //                print("No favorite found with name: \(palette.name ?? "unknown")")
 //            }
 //        } catch {
 //            print("Failed to delete palette: \(error)")
+//        }
+//    }
+//    
+//    func fetchFavorites() -> [FavNamedColorPalettes] {
+//        let request: NSFetchRequest<FavNamedColorPalettes> = FavNamedColorPalettes.fetchRequest()
+//        do {
+//            let favorites = try context.fetch(request)
+//            for favorite in favorites {
+//                context.refresh(favorite, mergeChanges: true)
+//                _ = favorite.colors
+//            }
+//            return favorites
+//        } catch {
+//            print("Failed to fetch favorites: \(error)")
+//            return []
 //        }
 //    }
 //    
@@ -178,15 +277,12 @@
 //        }
 //    }
 //}
-
-
 import CoreData
 import UIKit
 
 class CoreDataManager {
     static let shared = CoreDataManager()
     
-    // Notification name for palette changes
     static let paletteDidChangeNotification = Notification.Name("PaletteDidChangeNotification")
     
     private init() {}
@@ -205,6 +301,7 @@ class CoreDataManager {
         return persistentContainer.viewContext
     }
     
+    // Existing methods for FavNamedColorPalettes
     func savePalette(_ palette: ColorPalette, in context: NSManagedObjectContext? = nil) {
         let saveContext = context ?? self.context
         do {
@@ -217,11 +314,9 @@ class CoreDataManager {
             if results.isEmpty {
                 let favorite = FavNamedColorPalettes(context: saveContext)
                 favorite.name = palette.name
-                favorite.colors = palette.colors as NSObject // Assuming colors is [String]
+                favorite.colors = palette.colors as NSObject
                 try saveContext.save()
                 print("Palette '\(palette.name)' saved successfully.")
-                
-                // Notify other view controllers
                 NotificationCenter.default.post(name: CoreDataManager.paletteDidChangeNotification, object: nil)
             } else {
                 print("Palette '\(palette.name)' already exists.")
@@ -243,8 +338,6 @@ class CoreDataManager {
                 deleteContext.delete(favoriteToDelete)
                 try deleteContext.save()
                 print("Palette '\(palette.name ?? "unknown")' deleted successfully.")
-                
-                // Notify other view controllers
                 NotificationCenter.default.post(name: CoreDataManager.paletteDidChangeNotification, object: nil)
             } else {
                 print("No favorite found with name: \(palette.name ?? "unknown")")
@@ -266,6 +359,76 @@ class CoreDataManager {
         } catch {
             print("Failed to fetch favorites: \(error)")
             return []
+        }
+    }
+    
+    // New methods for SingleColor
+    func saveSingleColor(name: String) {
+        let saveContext = context
+        do {
+            let fetchRequest = NSFetchRequest<SingleColor>(entityName: "SingleColor")
+            fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+            fetchRequest.fetchLimit = 1
+            
+            let results = try saveContext.fetch(fetchRequest)
+            
+            if results.isEmpty {
+                let singleColor = SingleColor(context: saveContext)
+                singleColor.name = name
+                try saveContext.save()
+                print("SingleColor '\(name)' saved successfully.")
+                NotificationCenter.default.post(name: CoreDataManager.paletteDidChangeNotification, object: nil)
+            } else {
+                print("SingleColor '\(name)' already exists.")
+            }
+        } catch {
+            print("Error saving SingleColor: \(error)")
+        }
+    }
+    
+    func deleteSingleColor(name: String) {
+        let deleteContext = context
+        let fetchRequest = NSFetchRequest<SingleColor>(entityName: "SingleColor")
+        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+        fetchRequest.fetchLimit = 1
+        
+        do {
+            let results = try deleteContext.fetch(fetchRequest)
+            if let colorToDelete = results.first {
+                deleteContext.delete(colorToDelete)
+                try deleteContext.save()
+                print("SingleColor '\(name)' deleted successfully.")
+                NotificationCenter.default.post(name: CoreDataManager.paletteDidChangeNotification, object: nil)
+            } else {
+                print("No SingleColor found with name: \(name)")
+            }
+        } catch {
+            print("Failed to delete SingleColor: \(error)")
+        }
+    }
+    
+    func fetchSingleColors() -> [SingleColor] {
+        let request: NSFetchRequest<SingleColor> = SingleColor.fetchRequest()
+        do {
+            let colors = try context.fetch(request)
+            return colors
+        } catch {
+            print("Failed to fetch SingleColors: \(error)")
+            return []
+        }
+    }
+    
+    func isSingleColorSaved(name: String) -> Bool {
+        let fetchRequest = NSFetchRequest<SingleColor>(entityName: "SingleColor")
+        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+        fetchRequest.fetchLimit = 1
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            return !results.isEmpty
+        } catch {
+            print("Error checking SingleColor: \(error)")
+            return false
         }
     }
     
