@@ -29,6 +29,7 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
 
     @IBAction func saveNamedColorsToCoreData(_ sender: UIButton) {
         buttonAction?()
+        
     }
     
     // Set the color palettes data for the collection view
@@ -70,6 +71,7 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
             let activityVC = UIActivityViewController(activityItems: [colorName], applicationActivities: nil)
             if let viewController = collectionView.window?.rootViewController {
                 viewController.present(activityVC, animated: true)
+                
             }
         }
         
@@ -87,10 +89,12 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 5
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+        
     }
 }
 

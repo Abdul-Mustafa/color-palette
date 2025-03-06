@@ -28,6 +28,18 @@ class TopTableViewCellInCollectionVC: UITableViewCell, UICollectionViewDelegate,
         super.awakeFromNib()
         // Initialization code
     }
+    
+    @IBAction func DeleteNamedColorsToCoreData(_ sender: UIButton) {
+        buttonAction?()
+        
+    }
+    
+    // Set the color palettes data for the collection view
+    func configureCell(with colorPalettes: [String]) {
+        self.colorPalettes = colorPalettes
+        topCollectionviewInCollectionVC.reloadData() // Refresh collection view
+        
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

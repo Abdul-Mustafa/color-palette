@@ -467,9 +467,12 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHU-XN-4Fb">
                                                             <rect key="frame" x="302" y="2.6666666666666679" width="52" height="35"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="suit.heart" catalog="system">
+                                                            <buttonConfiguration key="configuration" style="plain" image="suit.heart.fill" catalog="system">
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="bold"/>
                                                             </buttonConfiguration>
+                                                            <connections>
+                                                                <action selector="DeleteNamedColorsToCoreData:" destination="OGX-8P-yQg" eventType="touchUpInside" id="oQ2-6u-DBp"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -590,7 +593,7 @@
                                             <outlet property="colorTitleInColorSideBar" destination="K7C-9U-N2u" id="reo-Yg-OD8"/>
                                             <outlet property="colorTitleInTopView" destination="Moq-S4-s9e" id="kja-qg-fRp"/>
                                             <outlet property="ellipsisButtonInColorSideBar" destination="xSc-1y-sKQ" id="faQ-sx-BSt"/>
-                                            <outlet property="heartButtonInTopView" destination="gHU-XN-4Fb" id="Cqm-Mb-vQP"/>
+                                            <outlet property="heartButtonInTopView" destination="gHU-XN-4Fb" id="RrO-id-Zay"/>
                                             <outlet property="hexaCodeInColorSideBar" destination="YR8-0P-1km" id="w1w-BQ-Bs6"/>
                                             <outlet property="topCollectionviewInCollectionVC" destination="Le3-HM-VTl" id="xVE-Co-dT1"/>
                                             <outlet property="underLine" destination="XNM-IF-ctq" id="N5a-ai-VFD"/>
@@ -720,6 +723,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SpX-mq-LNl"/>
+                    <connections>
+                        <outlet property="SubView" destination="6DQ-AV-Wob" id="IRt-9C-6Tc"/>
+                        <outlet property="tableViewInCollectonVC" destination="zti-qd-rm9" id="Khw-kC-gaD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1bZ-j8-8Xk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1162,6 +1169,7 @@
         <image name="king-hat" width="36" height="31"/>
         <image name="share" width="128" height="128"/>
         <image name="suit.heart" catalog="system" width="128" height="107"/>
+        <image name="suit.heart.fill" catalog="system" width="128" height="107"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

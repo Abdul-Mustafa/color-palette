@@ -9,7 +9,7 @@ import UIKit
 
 class BottomTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   
-    
+    var buttonAction: (() -> Void)?
     var colorPalettes: [String]?
     
     @IBOutlet weak var bottomCollectionView: UICollectionView!
@@ -28,17 +28,22 @@ class BottomTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollec
                collectionView.alwaysBounceVertical = false
                collectionView.alwaysBounceHorizontal = true
     }
+    
+  
+    
+    // Set the color palettes data for the collection view
+    func configureCell(with colorPalettes: [String]) {
+        self.colorPalettes = colorPalettes
+        collectionView.reloadData() // Refresh collection view
+        
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
-    func configureCell(with colorPalettes: [String]) {
-        self.colorPalettes = colorPalettes
-        
-        collectionView.reloadData() // Refresh collection view
-    }
+
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return colorPalettes?.count ?? 0

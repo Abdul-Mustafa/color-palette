@@ -1,8 +1,8 @@
 //
-//  FavoritePalette+CoreDataClass.swift
+//  FavNamedColorPalettes+CoreDataClass.swift
 //  Color Palette
 //
-//  Created by mac on 03/03/2025.
+//  Created by mac on 05/03/2025.
 //
 //
 

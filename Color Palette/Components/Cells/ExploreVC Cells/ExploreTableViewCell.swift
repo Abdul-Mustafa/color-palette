@@ -27,7 +27,7 @@ class ExploreTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
     }
     func configureCell(with colorPalettes: [ColorPalette]?) {
         self.colorPalettes = colorPalettes
-      //  print(colorPalettes)
+      
         collectionViewInExploreVC.reloadData() // Refresh collection view
     }
 
@@ -43,7 +43,7 @@ class ExploreTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExploreCollectionViewCell", for: indexPath) as! ExploreCollectionViewCell
         cell.industryLabelInCollectionView.text = colorPalettes?[indexPath.row].name
-       // print(type(of: colorPalettes?[indexPath.row].colors.first))
+       
         cell.leftColorContrainer.backgroundColor = UIColor(hex: colorPalettes?[indexPath.row].colors.first ?? "#FFFFFF")
         cell.midleColorContainer.backgroundColor = UIColor(hex: colorPalettes?[indexPath.row].colors[1] ?? "#FFFFFF")
         cell.rightColorContainer.backgroundColor = UIColor(hex: colorPalettes?[indexPath.row].colors[2] ?? "#FFFFFF")

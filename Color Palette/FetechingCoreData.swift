@@ -11,7 +11,7 @@ import UIKit
 func fetchSavedData() {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
     let context = appDelegate.persistentContainer.viewContext
-    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoritePalette")
+    let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavNamedColorPalettes")
 
     do {
         let results = try context.fetch(fetchRequest)
