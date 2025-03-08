@@ -8,6 +8,8 @@ class ViewController: UIViewController {
     var namedColors: [ColorPalette]?
     var randomColors: [ColorPalette]?
     var favNamedColorPalettes: [FavNamedColorPalettes] = []
+    var singleColorsInCoreData: [SingleColor]?
+    
 
     func isFavorite(colorPalette: ColorPalette?) -> Bool {
         guard let colorName = colorPalette?.name else { return false }
@@ -15,7 +17,7 @@ class ViewController: UIViewController {
     }
     
     func isSingleColorSaved(colorPalette: ColorPalette?) -> Bool {
-        guard let colorName = colorPalette?.name else { return false }
+        guard let colorName = colorPalette?.colors.first else { return false }
         return CoreDataManager.shared.isSingleColorSaved(name: colorName)
     }
     
@@ -39,7 +41,12 @@ class ViewController: UIViewController {
         randomColors = randomColorsFromDataManager
         colorPalettes = allPalettes
         favNamedColorPalettes = CoreDataManager.shared.fetchFavorites()
-        
+        singleColorsInCoreData = CoreDataManager.shared.fetchSingleColors()
+        if let colors = singleColorsInCoreData {
+            for single in colors {
+                print(single.name)
+            }
+        }
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(refreshFavorites),
@@ -50,8 +57,9 @@ class ViewController: UIViewController {
     
     @objc func refreshFavorites() {
         favNamedColorPalettes = CoreDataManager.shared.fetchFavorites()
+        singleColorsInCoreData = CoreDataManager.shared.fetchSingleColors()
         tableviewAtHome.reloadData()
-        print("Favorites refreshed in ViewController")
+        //print("Favorites refreshed in ViewController")
     }
     
     deinit {
@@ -92,23 +100,29 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             cell.configureCell(with: colorPalette?.colors ?? [])
             
             // Updated favAction for SingleColor entity
+           
             let favAction = UIAction(title: "Fav", image: UIImage(systemName: isSingleColorSaved(colorPalette: colorPalette) ? "heart.fill" : "heart")) { [weak self] _ in
-                guard let self = self, let colorPalette = colorPalette else { return }
+                guard let self = self,
+                let colorPalette = colorPalette else { return }
                 let isSaved = self.isSingleColorSaved(colorPalette: colorPalette)
-                
+               // print(isSaved)
                 if isSaved {
                     let alert = UIAlertController(
                         title: "Unsave Color",
                         message: "Do you want to unsave this color?",
                         preferredStyle: .alert
                     )
+                    print("I am printhing is now \(colorPalette.colors.first)")
                     let unsaveAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
                         CoreDataManager.shared.deleteSingleColor(name: colorPalette.name)
+                        
                         DispatchQueue.main.async {
                             if let updatedCell = self.tableviewAtHome.cellForRow(at: indexPath) as? HomeTableViewCell {
                                 updatedCell.ellipsisButtonInColorSideBar.menu = UIMenu(children: [
                                     UIAction(title: "Fav", image: UIImage(systemName: "heart")) { _ in
-                                        CoreDataManager.shared.saveSingleColor(name: colorPalette.name)
+                                        
+                                        CoreDataManager.shared.saveSingleColor(name: colorPalette.colors.first ?? "FFFFF")
+                                            
                                         self.refreshFavorites()
                                     },
                                     UIAction(title: "Lock", image: UIImage(systemName: "lock")) { _ in
@@ -164,7 +178,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 if let namedColors = self.namedColors, indexPath.row < namedColors.count {
                     let selectedColor = namedColors[indexPath.row]
                     let isFav = self.isFavorite(colorPalette: selectedColor)
-
                     if isFav {
                         let alert = UIAlertController(
                             title: "Unsave Color",
