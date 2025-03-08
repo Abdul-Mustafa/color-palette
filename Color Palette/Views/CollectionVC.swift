@@ -28,6 +28,8 @@ class CollectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         )
     }
     
+    
+    
     func fetchFavorites() {
         favNamedColorPalettes = CoreDataManager.shared.fetchFavorites()
         tableViewInCollectonVC.reloadData()
@@ -88,6 +90,7 @@ class CollectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                     self.copiedPalette = palette.name
                     print("Copied \(palette.name ?? "unknown")")
                     DispatchQueue.main.async {
+                       
                         self.tableViewInCollectonVC.reloadData() // Update icons
                     }
                 }
@@ -121,6 +124,7 @@ class CollectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "BottomTableViewCellInCollectionVC", for: indexPath) as! BottomTableViewCellInCollectionVC
             return cell
+            
         }
     }
     

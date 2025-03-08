@@ -51,7 +51,7 @@ class CoreDataManager {
     func deletePalette(_ palette: ColorPalette) {
         let deleteContext = context
         let fetchRequest = NSFetchRequest<FavNamedColorPalettes>(entityName: "FavNamedColorPalettes")
-        fetchRequest.predicate = NSPredicate(format: "name == %@", palette.name ?? "")
+        fetchRequest.predicate = NSPredicate(format: "name == %@", palette.name )
         fetchRequest.fetchLimit = 1
         
         do {
@@ -59,10 +59,10 @@ class CoreDataManager {
             if let favoriteToDelete = results.first {
                 deleteContext.delete(favoriteToDelete)
                 try deleteContext.save()
-                print("Palette '\(palette.name ?? "unknown")' deleted successfully.")
+                print("Palette '\(palette.name)' deleted successfully.")
                 NotificationCenter.default.post(name: CoreDataManager.paletteDidChangeNotification, object: nil)
             } else {
-                print("No favorite found with name: \(palette.name ?? "unknown")")
+                print("No favorite found with name: \(palette.name)")
             }
         } catch {
             print("Failed to delete palette: \(error)")
@@ -161,4 +161,37 @@ class CoreDataManager {
             print("Failed to save: \(error)")
         }
     }
+    func deleteAllData(in context: NSManagedObjectContext) {
+            do {
+                // Get the persistent store coordinator
+                guard let persistentStoreCoordinator = context.persistentStoreCoordinator else { return }
+                
+                // Get all entity descriptions from the managed object model
+                let entities = persistentStoreCoordinator.managedObjectModel.entities
+                
+                for entity in entities {
+                    guard let entityName = entity.name else { continue }
+                    
+                    // Create a fetch request for the entity
+                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+                    let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+                    
+                    // Execute the batch delete request
+                    try context.execute(batchDeleteRequest)
+                }
+                
+                // Save the context to persist changes
+                try context.save()
+                print("All data deleted successfully.")
+                NotificationCenter.default.post(name: CoreDataManager.paletteDidChangeNotification, object: nil)
+            } catch {
+                print("Failed to delete data: \(error)")
+            }
+        }
+    
+    func deleteAllData() {
+            deleteAllData(in: context)
+        }
+    
+    
 }

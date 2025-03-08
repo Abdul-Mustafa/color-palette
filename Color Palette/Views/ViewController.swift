@@ -3,7 +3,7 @@ import UIKit
 import CoreData
 
 class ViewController: UIViewController {
-    
+    private var copiedPalette: String?
     var colorPalettes: [String : [ColorPalette]] = [:]
     var namedColors: [ColorPalette]?
     var randomColors: [ColorPalette]?
@@ -42,6 +42,7 @@ class ViewController: UIViewController {
         colorPalettes = allPalettes
         favNamedColorPalettes = CoreDataManager.shared.fetchFavorites()
         singleColorsInCoreData = CoreDataManager.shared.fetchSingleColors()
+        
         if let colors = singleColorsInCoreData {
             for single in colors {
                 print(single.name)
@@ -53,6 +54,7 @@ class ViewController: UIViewController {
             name: CoreDataManager.paletteDidChangeNotification,
             object: nil
         )
+        
     }
     
     @objc func refreshFavorites() {
@@ -98,7 +100,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             )
             cell.underLine.backgroundColor = UIColor(hex: colorPalette?.colors.first ?? "#FFFFFF")
             cell.configureCell(with: colorPalette?.colors ?? [])
-            
+            let isCopied = colorPalette?.colors.first == copiedPalette
             // Updated favAction for SingleColor entity
            
             let favAction = UIAction(title: "Fav", image: UIImage(systemName: isSingleColorSaved(colorPalette: colorPalette) ? "heart.fill" : "heart")) { [weak self] _ in
@@ -112,9 +114,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                         message: "Do you want to unsave this color?",
                         preferredStyle: .alert
                     )
-                    print("I am printhing is now \(colorPalette.colors.first)")
+                   
                     let unsaveAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
-                        CoreDataManager.shared.deleteSingleColor(name: colorPalette.name)
+                        CoreDataManager.shared.deleteSingleColor(name: colorPalette.colors.first ?? "")
                         
                         DispatchQueue.main.async {
                             if let updatedCell = self.tableviewAtHome.cellForRow(at: indexPath) as? HomeTableViewCell {
@@ -131,6 +133,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                                     UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc")) { _ in
                                         print("Copied \(colorPalette.name)")
                                     },
+                                    
                                     UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in }
                                 ])
                             }
@@ -141,12 +144,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                     alert.addAction(cancelAction)
                     self.present(alert, animated: true, completion: nil)
                 } else {
-                    CoreDataManager.shared.saveSingleColor(name: colorPalette.name)
+                    CoreDataManager.shared.saveSingleColor(name: colorPalette.colors.first ?? "#FFFFFF")
                     DispatchQueue.main.async {
                         if let updatedCell = self.tableviewAtHome.cellForRow(at: indexPath) as? HomeTableViewCell {
                             updatedCell.ellipsisButtonInColorSideBar.menu = UIMenu(children: [
                                 UIAction(title: "Fav", image: UIImage(systemName: "heart.fill")) { _ in
-                                    CoreDataManager.shared.deleteSingleColor(name: colorPalette.name)
+                                    CoreDataManager.shared.deleteSingleColor(name: colorPalette.colors.first ?? "#FFFFFF")
                                     self.refreshFavorites()
                                 },
                                 UIAction(title: "Lock", image: UIImage(systemName: "lock")) { _ in
@@ -165,8 +168,20 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             let lockAction = UIAction(title: "Lock", image: UIImage(systemName: "lock")) { _ in
                 print("Lock tapped for \(colorPalette?.name ?? "unknown")")
             }
-            let copyAction = UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc")) { _ in
-                print("Copied \(colorPalette?.name ?? "unknown")")
+          
+            let copyAction = UIAction(
+                title: "Copy",
+                image: UIImage(systemName: isCopied ? "doc.on.doc.fill" : "doc.on.doc")
+            ) { [weak self] _ in
+                guard let self = self else { return }
+                UIPasteboard.general.string = colorPalette?.colors.first
+                self.copiedPalette = colorPalette?.colors.first
+                print("Copied \(colorPalette?.colors.first ?? "unknown")")
+                DispatchQueue.main.async {
+                    
+                    self.tableviewAtHome.reloadData()
+                    // Update icons
+                }
             }
             let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in }
             

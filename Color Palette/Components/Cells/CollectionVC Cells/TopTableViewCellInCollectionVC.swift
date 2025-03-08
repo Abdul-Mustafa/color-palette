@@ -78,6 +78,7 @@ class TopTableViewCellInCollectionVC: UITableViewCell, UICollectionViewDelegate,
             self.copiedColor = colorName
             print("Copied \(colorName)")
             DispatchQueue.main.async {
+                
                 self.topCollectionviewInCollectionVC.reloadData() // Update icons
             }
         }
