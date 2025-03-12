@@ -102,7 +102,6 @@
 import UIKit
 
 class AddButtonViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
     private var galleryButton: UIButton!
     
     override func viewDidLoad() {
@@ -111,10 +110,10 @@ class AddButtonViewController: UIViewController, UIImagePickerControllerDelegate
         setupUI()
         
         if navigationController == nil {
-            print("Warning: This view controller needs to be embedded in a UINavigationController")
+            print("Warning: This view controller should be embedded in a UINavigationController for optimal navigation")
         }
     }
- 
+    
     private func setupUI() {
         let titleLabel = UILabel()
         titleLabel.text = "Color Collect From"
@@ -127,13 +126,15 @@ class AddButtonViewController: UIViewController, UIImagePickerControllerDelegate
         separatorLine.backgroundColor = .lightGray
         separatorLine.translatesAutoresizingMaskIntoConstraints = false
         
-        let button1 = createButton(title: "Camera", iconName: "Vector (2)", color: UIColor(hexString: "909392"), isSystemIcon: false)
+        let cameraButton = createButton(title: "Camera", iconName: "Vector (2)", color: UIColor(hexString: "909392"), isSystemIcon: false)
         galleryButton = createButton(title: "Gallery", iconName: "Group 2228", color: UIColor(hexString: "F24674"), isSystemIcon: false)
-        let button3 = createButton(title: "Pinterest", iconName: "Vector (3)", color: UIColor(hexString: "FF9BAD"), isSystemIcon: false)
+        let pinterestButton = createButton(title: "Pinterest", iconName: "Vector (3)", color: UIColor(hexString: "FF9BAD"), isSystemIcon: false)
         
         galleryButton.addTarget(self, action: #selector(galleryButtonTapped), for: .touchUpInside)
+        cameraButton.addTarget(self, action: #selector(cameraButtonTapped), for: .touchUpInside)
+        pinterestButton.addTarget(self, action: #selector(pinterestButtonTapped), for: .touchUpInside)
         
-        let stackView = UIStackView(arrangedSubviews: [button1, galleryButton, button3])
+        let stackView = UIStackView(arrangedSubviews: [cameraButton, galleryButton, pinterestButton])
         stackView.axis = .vertical
         stackView.spacing = 20
         stackView.alignment = .center
@@ -159,7 +160,7 @@ class AddButtonViewController: UIViewController, UIImagePickerControllerDelegate
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
-        [button1, galleryButton, button3].forEach { button in
+        [cameraButton, galleryButton, pinterestButton].forEach { button in
             NSLayoutConstraint.activate([
                 button.widthAnchor.constraint(equalToConstant: buttonWidth),
                 button.heightAnchor.constraint(equalToConstant: buttonHeight)
@@ -202,6 +203,18 @@ class AddButtonViewController: UIViewController, UIImagePickerControllerDelegate
         present(imagePicker, animated: true, completion: nil)
     }
     
+    @objc private func cameraButtonTapped() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .camera
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @objc private func pinterestButtonTapped() {
+        print("Pinterest button tapped - implementation pending")
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.originalImage] as? UIImage else {
             print("No image selected")
@@ -209,16 +222,24 @@ class AddButtonViewController: UIViewController, UIImagePickerControllerDelegate
             return
         }
         
-        print("Image selected successfully")
         picker.dismiss(animated: true) { [weak self] in
             guard let self = self else { return }
-            let colorVC = ColorDisplayViewController(image: selectedImage)
+            // Explicitly load the storyboard
+            let storyboard = UIStoryboard(name: "Main", bundle: nil) // Adjust "Main" if your storyboard has a different name
+            guard let colorVC = storyboard.instantiateViewController(withIdentifier: "UploadedImagePalettesVC") as? UploadedImagePalettesVC else {
+                print("Failed to instantiate UploadedImagePalettesVC. Verify:")
+                print("1. Storyboard file 'Main.storyboard' exists in the project")
+                print("2. View Controller has Storyboard ID 'UploadedImagePalettesVC' set in Interface Builder")
+                print("3. Class is set to 'UploadedImagePalettesVC' in Identity Inspector")
+                return
+            }
+            colorVC.image = selectedImage
             
             if let navController = self.navigationController {
-                print("Pushing to navigation controller")
+                print("Pushing UploadedImagePalettesVC via navigation controller")
                 navController.pushViewController(colorVC, animated: true)
             } else {
-                print("Presenting modally - no navigation controller found")
+                print("Presenting UploadedImagePalettesVC modally (no navigation controller)")
                 colorVC.modalPresentationStyle = .fullScreen
                 self.present(colorVC, animated: true)
             }
@@ -227,82 +248,6 @@ class AddButtonViewController: UIViewController, UIImagePickerControllerDelegate
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
-    }
-}
-
-class ColorDisplayViewController: UIViewController {
-    private let selectedImage: UIImage
-    
-    init(image: UIImage) {
-        self.selectedImage = image
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        setupUI()
-    }
-    
-    private func setupUI() {
-        let imageView = UIImageView(image: selectedImage)
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let colors = extractColors(from: selectedImage)
-        
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        colors.forEach { color in
-            let colorView = UIView()
-            colorView.backgroundColor = color
-            colorView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-            stackView.addArrangedSubview(colorView)
-        }
-        
-        view.addSubview(imageView)
-        view.addSubview(stackView)
-        
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4),
-            
-            stackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
-        ])
-    }
-    
-    private func extractColors(from image: UIImage) -> [UIColor] {
-        guard let cgImage = image.cgImage,
-              let dataProvider = cgImage.dataProvider,
-              let data = dataProvider.data,
-              let bytes = CFDataGetBytePtr(data) else {
-            return [.red, .blue, .green]
-        }
-        
-        var extractedColors: [UIColor] = []
-        let pixelCount = cgImage.width * cgImage.height
-        let bytesPerPixel = cgImage.bitsPerPixel / 8
-        
-        for i in 0..<min(5, pixelCount) {
-            let offset = i * bytesPerPixel * (pixelCount / 5)
-            let r = CGFloat(bytes[offset]) / 255.0
-            let g = CGFloat(bytes[offset + 1]) / 255.0
-            let b = CGFloat(bytes[offset + 2]) / 255.0
-            extractedColors.append(UIColor(red: r, green: g, blue: b, alpha: 1.0))
-        }
-        
-        return extractedColors
     }
 }
 
