@@ -673,7 +673,9 @@ extension UploadedImagePalettesVC: UICollectionViewDelegate, UICollectionViewDat
         
         if let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCellInUploadedImagePalettesVC {
             cell.layer.borderWidth = 2.0
-            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.cornerRadius = 10.0 // Add corner radius here
+            cell.clipsToBounds = true
+            cell.layer.borderColor = UIColor.gray.cgColor
         }
     }
     
@@ -787,7 +789,7 @@ extension UIColor {
         getRed(&r, green: &g, blue: &b, alpha: &a)
         
         let rgb: Int = (Int)(r * 255) << 16 | (Int)(g * 255) << 8 | (Int)(b * 255) << 0
-        return String(format: "#%06x", rgb)
+        return String(format: "%06x", rgb)
     }
 }
 
