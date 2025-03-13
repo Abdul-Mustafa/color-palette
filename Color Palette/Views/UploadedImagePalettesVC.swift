@@ -293,6 +293,13 @@ class UploadedImagePalettesVC: UIViewController {
     private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.isScrollEnabled = true
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+        }
     }
     
     private func displayImage() {
@@ -317,7 +324,7 @@ class UploadedImagePalettesVC: UIViewController {
 }
 
 // MARK: - UICollectionViewDelegate & DataSource
-extension UploadedImagePalettesVC: UICollectionViewDelegate, UICollectionViewDataSource {
+extension UploadedImagePalettesVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("Number of extracted colors: \(extractedColors.count)")
         return extractedColors.count
@@ -334,6 +341,17 @@ extension UploadedImagePalettesVC: UICollectionViewDelegate, UICollectionViewDat
         cell.hexaCodeLabel.textColor = .black
         
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.size.width / 5, height: (collectionView.frame.size.height ) )
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
     func sliderResultContainers(){
         
