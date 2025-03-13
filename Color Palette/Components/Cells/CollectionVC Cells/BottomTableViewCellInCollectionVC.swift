@@ -61,8 +61,15 @@ class BottomTableViewCellInCollectionVC: UITableViewCell, UICollectionViewDataSo
     }
     
     // Set square size for collection view cells (example: 50x50)
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let squareSize: CGFloat = 100
+//        return CGSize(width: squareSize, height: squareSize)
+//    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let squareSize: CGFloat = 100
-        return CGSize(width: squareSize, height: squareSize)
+        let collectionViewWidth = collectionView.bounds.width
+        let relativeWidth = collectionViewWidth * 0.25 // 50% of the collection view's width
+        let relativeHeight = relativeWidth * 1.3 // Maintaining a 1:1.32 aspect ratio, for example
+        
+        return CGSize(width: relativeWidth, height: relativeHeight)
     }
 }

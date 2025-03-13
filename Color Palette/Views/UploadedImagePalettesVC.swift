@@ -847,7 +847,28 @@ class UploadedImagePalettesVC: UIViewController {
     }
     
     @IBAction func savePalettes(_ sender: UIButton) {
-        // Implement save functionality here if needed
+        guard let hexCode = finalHexaCode.text else { return }
+        
+        // Check if the color is already saved using CoreDataManager
+        if CoreDataManager.shared.isSingleColorSaved(name: hexCode) {
+            // Show feedback if already saved
+            let originalText = finalHexaCode.text
+            finalHexaCode.text = "Color already saved!"
+            showToast(message: "Color already saved!")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.finalHexaCode.text = originalText // Revert after 1 second
+            }
+        } else {
+            // Save the color if not already saved
+            CoreDataManager.shared.saveSingleColor(name: hexCode)
+            // Show feedback for successful save
+            let originalText = finalHexaCode.text
+            finalHexaCode.text = "Color saved!"
+            showToast(message: "Color saved!")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.finalHexaCode.text = originalText // Revert after 1 second
+            }
+        }
     }
     
     @IBAction func rSlider(_ sender: UISlider) {
@@ -983,7 +1004,6 @@ extension UploadedImagePalettesVC: UICollectionViewDelegate, UICollectionViewDat
         cell.colorView.backgroundColor = color
         cell.hexaCodeLabel.text = color.toHexString()
         cell.hexaCodeLabel.textColor = .black
-        
         return cell
     }
     
@@ -1140,7 +1160,40 @@ extension UIColor {
         getRed(&r, green: &g, blue: &b, alpha: &a)
         
         let rgb: Int = (Int)(r * 255) << 16 | (Int)(g * 255) << 8 | (Int)(b * 255) << 0
-        return String(format: "%06x", rgb)
+        return String(format: "#%06x", rgb)
     }
 }
 
+extension UploadedImagePalettesVC {
+    func showToast(message: String, duration: TimeInterval = 2.0) {
+          let toastLabel = UILabel()
+          toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+          toastLabel.textColor = UIColor.white
+          toastLabel.textAlignment = .center
+          toastLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+          toastLabel.text = message
+          toastLabel.alpha = 0.0
+          toastLabel.numberOfLines = 0
+          toastLabel.layer.cornerRadius = 10
+          toastLabel.clipsToBounds = true
+          
+          // Set dynamic width based on text and padding
+          let maxWidth = self.view.frame.size.width * 0.7
+          let textSize = toastLabel.sizeThatFits(CGSize(width: maxWidth, height: CGFloat.greatestFiniteMagnitude))
+          toastLabel.frame = CGRect(x: 0, y: 0, width: textSize.width + 40, height: textSize.height + 20)
+          toastLabel.center = self.view.center
+
+          self.view.addSubview(toastLabel)
+          
+          // Animate fade-in and fade-out
+          UIView.animate(withDuration: 0.5, animations: {
+              toastLabel.alpha = 1.0
+          }) { _ in
+              UIView.animate(withDuration: 0.5, delay: duration, options: .curveEaseOut, animations: {
+                  toastLabel.alpha = 0.0
+              }) { _ in
+                  toastLabel.removeFromSuperview()
+              }
+          }
+      }
+}
