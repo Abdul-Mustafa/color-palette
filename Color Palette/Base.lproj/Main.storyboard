@@ -1313,31 +1313,33 @@
                                                 <color key="textColor" systemColor="opaqueSeparatorColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="document.on.document.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1bX-hF-HoI">
-                                                <rect key="frame" x="319" y="75.000000000000043" width="21" height="24"/>
-                                                <color key="tintColor" systemColor="opaqueSeparatorColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="21" id="6lI-Nr-HoD"/>
-                                                    <constraint firstAttribute="height" constant="20" id="yb1-ql-3o8"/>
-                                                </constraints>
-                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FFFFFF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klA-ZU-2mo">
                                                 <rect key="frame" x="128" y="76" width="56" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" systemColor="opaqueSeparatorColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0g-DD-ga5">
+                                                <rect key="frame" x="317.66666666666669" y="69.333333333333371" width="51.333333333333314" height="34.333333333333343"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="document.on.document.fill" catalog="system">
+                                                    <color key="baseForegroundColor" systemColor="opaqueSeparatorColor"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="copyButtonPressed:" destination="vM9-Fz-bRk" eventType="touchUpInside" id="ybC-tz-i4G"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="1bX-hF-HoI" firstAttribute="leading" secondItem="bjf-ED-yAC" secondAttribute="trailing" constant="1.3333333333333144" id="E64-c5-ain"/>
                                             <constraint firstItem="bjf-ED-yAC" firstAttribute="top" secondItem="98g-f7-KBE" secondAttribute="bottom" constant="5" id="KPA-dX-d7m"/>
-                                            <constraint firstItem="1bX-hF-HoI" firstAttribute="centerY" secondItem="98g-f7-KBE" secondAttribute="centerY" id="PQQ-E8-kcG"/>
                                             <constraint firstItem="bjf-ED-yAC" firstAttribute="centerY" secondItem="KSi-8s-t0H" secondAttribute="centerY" id="Q5P-JP-RLp"/>
                                             <constraint firstItem="klA-ZU-2mo" firstAttribute="centerY" secondItem="98g-f7-KBE" secondAttribute="centerY" id="aPC-G5-N1X"/>
                                             <constraint firstItem="bjf-ED-yAC" firstAttribute="leading" secondItem="98g-f7-KBE" secondAttribute="trailing" constant="-10.666666666666671" id="bJs-sO-5oZ"/>
                                             <constraint firstItem="klA-ZU-2mo" firstAttribute="leading" secondItem="98g-f7-KBE" secondAttribute="trailing" constant="5" id="fqL-Qb-T0H"/>
                                             <constraint firstItem="bjf-ED-yAC" firstAttribute="width" secondItem="KSi-8s-t0H" secondAttribute="width" multiplier="0.477519" id="hhm-cc-ocg"/>
+                                            <constraint firstItem="q0g-DD-ga5" firstAttribute="leading" secondItem="bjf-ED-yAC" secondAttribute="trailing" id="iih-rd-OKr"/>
                                             <constraint firstItem="bjf-ED-yAC" firstAttribute="centerX" secondItem="KSi-8s-t0H" secondAttribute="centerX" id="nF8-mO-lQo"/>
+                                            <constraint firstItem="q0g-DD-ga5" firstAttribute="centerY" secondItem="klA-ZU-2mo" secondAttribute="centerY" id="tAP-3d-7m4"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1380,6 +1382,7 @@
                         <outlet property="bSliderResult" destination="NXi-Jb-wqm" id="8ef-Lc-UQe"/>
                         <outlet property="bSliderResultView" destination="eeI-gb-JYa" id="EOe-fX-daO"/>
                         <outlet property="collectionView" destination="1RS-Aw-Ctg" id="9b0-iK-in4"/>
+                        <outlet property="copyButton" destination="q0g-DD-ga5" id="6qN-Ty-xQV"/>
                         <outlet property="exitButtonView" destination="d7y-eA-hfL" id="EuM-jL-wHD"/>
                         <outlet property="finalHexaCode" destination="klA-ZU-2mo" id="56F-Kf-3vj"/>
                         <outlet property="gSliderOutlet" destination="i02-EZ-WKz" id="2RX-j6-MpP"/>

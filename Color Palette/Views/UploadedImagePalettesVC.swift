@@ -511,7 +511,7 @@ class UploadedImagePalettesVC: UIViewController {
     @IBOutlet weak var bSliderResult: UILabel!
     @IBOutlet weak var bSliderResultView: UIView!
     @IBOutlet weak var finalHexaCode: UILabel!
-    
+    @IBOutlet weak var copyButton: UIButton!
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -548,6 +548,17 @@ class UploadedImagePalettesVC: UIViewController {
         bSliderResult.text = String(format: "%.0f", sender.value)
         updateFinalColor()
     }
+    @IBAction func copyButtonPressed(_ sender: UIButton) {
+            guard let hexCode = finalHexaCode.text else { return }
+            UIPasteboard.general.string = hexCode // Copy the hex code to clipboard
+            
+            // Provide visual feedback
+            let originalText = finalHexaCode.text
+            finalHexaCode.text = "Copied!"
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.finalHexaCode.text = originalText // Revert after 1 second
+            }
+        }
     
     // MARK: - Private Methods
     private func setupView() {
