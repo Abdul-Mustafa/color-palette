@@ -51,6 +51,7 @@ class MoreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       // view.heightAnchor.constraint(equalToConstant: 100).isActive = true
         setupTableView()
         setupNavigationController()
         setupSearchController()
