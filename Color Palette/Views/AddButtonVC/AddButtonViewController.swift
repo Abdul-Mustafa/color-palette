@@ -136,14 +136,14 @@ class AddButtonViewController: UIViewController, UIImagePickerControllerDelegate
             }
             colorVC.image = selectedImage
             
-            if let navController = self.navigationController {
-                print("Pushing UploadedImagePalettesVC via navigation controller")
-                navController.pushViewController(colorVC, animated: true)
-            } else {
-                print("Presenting UploadedImagePalettesVC modally (no navigation controller)")
-                colorVC.modalPresentationStyle = .fullScreen
-                self.present(colorVC, animated: true)
-            }
+            //            if let navController = self.navigationController {
+            //                print("Pushing UploadedImagePalettesVC via navigation controller")
+            //                navController.pushViewController(colorVC, animated: true)
+            //            } else {
+            print("Presenting UploadedImagePalettesVC modally (no navigation controller)")
+            colorVC.modalPresentationStyle = .fullScreen
+            self.present(colorVC, animated: true)
+        //}
         }
     }
     

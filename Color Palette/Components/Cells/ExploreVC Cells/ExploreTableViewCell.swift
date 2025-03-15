@@ -65,5 +65,39 @@ class ExploreTableViewCell: UITableViewCell, UICollectionViewDataSource, UIColle
         return CGSize(width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.width/3)
         }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Get the selected palette
+        guard let selectedPalette = colorPalettes?[indexPath.row] else { return }
+        
+        // Create an instance of the storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // Instantiate the destination view controller
+        if let destinationVC = storyboard.instantiateViewController(withIdentifier: "SlectedPaletteInExploreVC") as? SlectedPaletteInExploreVC {
+            // Pass the selected palette data to the destination VC
+            destinationVC.selectedPalette = selectedPalette
+            
+            // Set the modal presentation style on the destination VC
+            destinationVC.modalPresentationStyle = .fullScreen
+            
+            // Get the current view controller to present from
+            if let viewController = self.findViewController() {
+                // Present directly from the view controller (not navigation controller)
+                viewController.present(destinationVC, animated: true, completion: nil)
+            }
+        }
+    }
+    
  
+}
+extension UIView {
+    func findViewController() -> UIViewController? {
+        if let nextResponder = self.next as? UIViewController {
+            return nextResponder
+        } else if let nextResponder = self.next as? UIView {
+            return nextResponder.findViewController()
+        } else {
+            return nil
+        }
+    }
 }
