@@ -137,7 +137,7 @@ class UploadedImagePalettesVC: UIViewController {
         
         if let colors = image.extractDominantColors(count: 5) {
             extractedColors = colors
-            print("Extracted colors: \(colors.map { $0.toHexString() })")
+//            print("Extracted colors: \(colors.map { $0.toHexString() })")
             collectionView.reloadData()
             
             // Select the first color by default
@@ -186,7 +186,7 @@ class UploadedImagePalettesVC: UIViewController {
 // MARK: - UICollectionViewDelegate & DataSource
 extension UploadedImagePalettesVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("Number of extracted colors: \(extractedColors.count)")
+        
         return extractedColors.count
     }
     

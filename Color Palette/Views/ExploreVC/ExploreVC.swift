@@ -11,8 +11,6 @@ class ExploreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreTableViewCell", for: indexPath) as! ExploreTableViewCell
         cell.colorNameAtTop.text = colorPalettesKeys[indexPath.row]
-       // print(colorPalettesKeys[indexPath.row])
-       // print(colorPalettes?[colorPalettesKeys[indexPath.row]])
         cell.configureCell(with: colorPalettes?[colorPalettesKeys[indexPath.row]])
         return cell
     }

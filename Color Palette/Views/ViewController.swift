@@ -43,11 +43,11 @@ class ViewController: UIViewController {
         favNamedColorPalettes = CoreDataManager.shared.fetchFavorites()
         singleColorsInCoreData = CoreDataManager.shared.fetchSingleColors()
         
-        if let colors = singleColorsInCoreData {
-            for single in colors {
-                print(single.name)
-            }
-        }
+//        if let colors = singleColorsInCoreData {
+//            for single in colors {
+//                print(single.name)
+//            }
+//        }
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(refreshFavorites),
@@ -61,7 +61,7 @@ class ViewController: UIViewController {
         favNamedColorPalettes = CoreDataManager.shared.fetchFavorites()
         singleColorsInCoreData = CoreDataManager.shared.fetchSingleColors()
         tableviewAtHome.reloadData()
-        //print("Favorites refreshed in ViewController")
+        
     }
     
     deinit {
@@ -107,7 +107,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 guard let self = self,
                 let colorPalette = colorPalette else { return }
                 let isSaved = self.isSingleColorSaved(colorPalette: colorPalette)
-               // print(isSaved)
+               
                 if isSaved {
                     let alert = UIAlertController(
                         title: "Unsave Color",
@@ -176,7 +176,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 guard let self = self else { return }
                 UIPasteboard.general.string = colorPalette?.colors.first
                 self.copiedPalette = colorPalette?.colors.first
-                print("Copied \(colorPalette?.colors.first ?? "unknown")")
+                
                 DispatchQueue.main.async {
                     
                     self.tableviewAtHome.reloadData()

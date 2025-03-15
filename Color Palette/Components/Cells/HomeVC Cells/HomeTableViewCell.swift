@@ -66,9 +66,9 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
         cell.colorCodeInBottomCenterInCollectionViewCell.textColor = textColor
         cell.ellipsisButtonInCollectionViewCell.tintColor = textColor
         cell.backgroundColor = backgroundColor
-        print("colorName is \(colorName)")
+       
         let isSaved = CoreDataManager.shared.isSingleColorSaved(name: colorName)
-        print(isSaved)
+        
         let isCopied = UIPasteboard.general.string == colorName
         
         let favAction = UIAction(title: "Fav", image: UIImage(systemName: isSaved ? "heart.fill" : "heart")) { [weak self] _ in
@@ -108,7 +108,7 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
         let copyAction = UIAction(title: "Copy", image: UIImage(systemName: isCopied ? "doc.on.doc.fill" : "doc.on.doc")) { [weak self] _ in
             guard let self = self else { return }
             UIPasteboard.general.string = colorName
-            print("Copied \(colorName)")
+            
             DispatchQueue.main.async {
                 
                 self.collectionView.reloadData() // Reload all cells to update "Copy" icons

@@ -55,9 +55,6 @@ class MoreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         setupTableView()
         setupNavigationController()
         setupSearchController()
-        
-        isRotated = UIDevice.current.orientation.isLandscape
-        print(isRotated)
     }
     
     func setupTableView() {

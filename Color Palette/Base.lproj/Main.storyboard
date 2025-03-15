@@ -1127,14 +1127,14 @@
                                                 <rect key="frame" x="0.0" y="55" width="430" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ieT-7w-5sR">
-                                                        <rect key="frame" x="20" y="39.666666666666657" width="44" height="21"/>
+                                                        <rect key="frame" x="40.333333333333336" y="39.666666666666657" width="44.000000000000007" height="21"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                        <nil key="textColor"/>
+                                                        <color key="textColor" red="0.94901960780000005" green="0.27450980390000002" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NsQ-k0-mGM">
-                                                        <rect key="frame" x="22.333333333333332" y="60.666666666666657" width="39.333333333333343" height="2"/>
-                                                        <color key="backgroundColor" systemColor="labelColor"/>
+                                                        <rect key="frame" x="41.333333333333336" y="60.666666666666657" width="42.000000000000007" height="2"/>
+                                                        <color key="backgroundColor" red="0.94901960780000005" green="0.27450980390000002" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                                         <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="2" id="fm4-B6-dHj"/>
@@ -1142,9 +1142,8 @@
                                                     </view>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="NsQ-k0-mGM" firstAttribute="width" secondItem="ieT-7w-5sR" secondAttribute="width" multiplier="0.893939" id="0Ga-Uw-mbu"/>
+                                                    <constraint firstItem="NsQ-k0-mGM" firstAttribute="width" secondItem="ieT-7w-5sR" secondAttribute="width" multiplier="0.95" id="0Ga-Uw-mbu"/>
                                                     <constraint firstItem="NsQ-k0-mGM" firstAttribute="centerX" secondItem="ieT-7w-5sR" secondAttribute="centerX" id="4FL-VP-4R5"/>
-                                                    <constraint firstItem="ieT-7w-5sR" firstAttribute="leading" secondItem="tzi-jf-dmq" secondAttribute="leading" constant="20" id="A4k-SQ-viT"/>
                                                     <constraint firstItem="ieT-7w-5sR" firstAttribute="centerY" secondItem="tzi-jf-dmq" secondAttribute="centerY" id="KCP-5x-hJK"/>
                                                     <constraint firstItem="NsQ-k0-mGM" firstAttribute="top" secondItem="ieT-7w-5sR" secondAttribute="bottom" id="OOk-6V-2oI"/>
                                                     <constraint firstAttribute="height" constant="100" id="WFY-pR-Smy"/>
@@ -1189,8 +1188,8 @@
                                                                                     <rect key="frame" x="0.0" y="0.0" width="108" height="54"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#FFFFFF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04D-oF-r6d">
-                                                                                            <rect key="frame" x="19.333333333333336" y="16.333333333333343" width="69.333333333333314" height="21"/>
-                                                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                                                            <rect key="frame" x="25.333333333333332" y="18.333333333333343" width="57.666666666666671" height="17"/>
+                                                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                                                             <nil key="textColor"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
@@ -1205,8 +1204,8 @@
                                                                                     <rect key="frame" x="0.0" y="54.000000000000014" width="108" height="54"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(0,0,0)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvr-gh-3J3">
-                                                                                            <rect key="frame" x="29" y="16.333333333333314" width="50" height="21"/>
-                                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                            <rect key="frame" x="36.666666666666671" y="20.333333333333314" width="34.666666666666671" height="13.333333333333336"/>
+                                                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                                             <nil key="textColor"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
@@ -1301,6 +1300,7 @@
                                             <constraint firstAttribute="bottom" secondItem="NLi-yG-GJa" secondAttribute="bottom" id="PL9-Ha-yV3"/>
                                             <constraint firstItem="Lh6-5q-OdW" firstAttribute="leading" secondItem="NwY-Vf-KE0" secondAttribute="leading" constant="20" id="PTa-Tb-4Qp"/>
                                             <constraint firstItem="NLi-yG-GJa" firstAttribute="top" secondItem="f2X-rL-EnP" secondAttribute="bottom" id="S4B-7i-5cc"/>
+                                            <constraint firstItem="ieT-7w-5sR" firstAttribute="leading" secondItem="VIX-V2-TDK" secondAttribute="leading" id="VJs-eF-lzl"/>
                                             <constraint firstItem="VIX-V2-TDK" firstAttribute="centerX" secondItem="NwY-Vf-KE0" secondAttribute="centerX" id="chL-x9-aJB"/>
                                             <constraint firstItem="f2X-rL-EnP" firstAttribute="leading" secondItem="NwY-Vf-KE0" secondAttribute="leading" id="gbS-cq-HcE"/>
                                             <constraint firstAttribute="trailing" secondItem="tzi-jf-dmq" secondAttribute="trailing" id="ggn-H0-l1c"/>
@@ -1336,6 +1336,7 @@
                     <connections>
                         <outlet property="adjust" destination="sT1-vq-L10" id="6w9-Vr-8Xk"/>
                         <outlet property="collectionView" destination="vvJ-SN-fJ3" id="xd1-Lw-ovZ"/>
+                        <outlet property="colorTitle" destination="ieT-7w-5sR" id="N1e-IR-Gmi"/>
                         <outlet property="colorView" destination="VIX-V2-TDK" id="Dlv-lq-ZsZ"/>
                         <outlet property="delete" destination="cVn-t4-Ysm" id="RG0-aN-I6q"/>
                         <outlet property="download" destination="yAR-F7-bWr" id="WVQ-66-onM"/>
