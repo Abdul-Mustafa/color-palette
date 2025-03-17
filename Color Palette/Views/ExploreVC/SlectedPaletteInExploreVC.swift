@@ -491,7 +491,18 @@ class SlectedPaletteInExploreVC: UIViewController, UITabBarDelegate, UICollectio
     }
     
     func adjustButtonTapped() {
-        print("Profile tab tapped!")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let adjustmentVC = storyboard.instantiateViewController(withIdentifier: "SlectedPaletteAdjustment") as? SlectedPaletteAdjustment else {
+            print("Error: Could not instantiate SlectedPaletteAdjustment")
+            return
+        }
+        
+        if let indexPath = selectedIndexPath, let selectedColor = selectedPalette?.colors[indexPath.row] {
+            adjustmentVC.selectedColor = selectedColor
+        }
+        
+        present(adjustmentVC, animated: true, completion: nil)
+        // Alternative: navigationController?.pushViewController(adjustmentVC, animated: true)
     }
     
     func deleteButtonTapped() {

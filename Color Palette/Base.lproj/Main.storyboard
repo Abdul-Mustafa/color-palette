@@ -1760,10 +1760,10 @@
             </objects>
             <point key="canvasLocation" x="2225" y="535"/>
         </scene>
-        <!--View Controller-->
+        <!--Slected Palette Adjustment-->
         <scene sceneID="yMc-eC-yvW">
             <objects>
-                <viewController id="dDM-Zc-lST" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SlectedPaletteAdjustment" id="dDM-Zc-lST" customClass="SlectedPaletteAdjustment" customModule="Color_Palette" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7q8-33-QDV">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
