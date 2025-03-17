@@ -100,43 +100,111 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             )
             cell.underLine.backgroundColor = UIColor(hex: colorPalette?.colors.first ?? "#FFFFFF")
             cell.configureCell(with: colorPalette?.colors ?? [])
-            let isCopied = colorPalette?.colors.first == copiedPalette
-            // Updated favAction for SingleColor entity
-           
-            let favAction = UIAction(title: "Fav", image: UIImage(systemName: isSingleColorSaved(colorPalette: colorPalette) ? "heart.fill" : "heart")) { [weak self] _ in
-                guard let self = self,
-                let colorPalette = colorPalette else { return }
-                let isSaved = self.isSingleColorSaved(colorPalette: colorPalette)
-               
+//            let isCopied = colorPalette?.colors.first == copiedPalette
+//            // Updated favAction for SingleColor entity
+//           
+//            let favAction = UIAction(title: "Fav", image: UIImage(systemName: isSingleColorSaved(colorPalette: colorPalette) ? "heart.fill" : "heart")) { [weak self] _ in
+//                guard let self = self,
+//                let colorPalette = colorPalette else { return }
+//                let isSaved = self.isSingleColorSaved(colorPalette: colorPalette)
+//               
+//                if isSaved {
+//                    let alert = UIAlertController(
+//                        title: "Unsave Color",
+//                        message: "Do you want to unsave this color?",
+//                        preferredStyle: .alert
+//                    )
+//                   
+//                    let unsaveAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
+//                        CoreDataManager.shared.deleteSingleColor(name: colorPalette.colors.first ?? "")
+//                        
+//                        DispatchQueue.main.async {
+//                            if let updatedCell = self.tableviewAtHome.cellForRow(at: indexPath) as? HomeTableViewCell {
+//                                updatedCell.ellipsisButtonInColorSideBar.menu = UIMenu(children: [
+//                                    UIAction(title: "Fav", image: UIImage(systemName: "heart")) { _ in
+//                                        
+//                                        CoreDataManager.shared.saveSingleColor(name: colorPalette.colors.first ?? "FFFFF")
+//                                            
+//                                        self.refreshFavorites()
+//                                    },
+//                                    UIAction(title: "Lock", image: UIImage(systemName: "lock")) { _ in
+//                                        print("Lock tapped for \(colorPalette.name)")
+//                                    },
+//                                    UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc")) { _ in
+//                                        print("Copied \(colorPalette.name)")
+//                                    },
+//                                    
+//                                    UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in }
+//                                ])
+//                            }
+//                        }
+//                    }
+//                    let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+//                    alert.addAction(unsaveAction)
+//                    alert.addAction(cancelAction)
+//                    self.present(alert, animated: true, completion: nil)
+//                } else {
+//                    CoreDataManager.shared.saveSingleColor(name: colorPalette.colors.first ?? "#FFFFFF")
+//                    DispatchQueue.main.async {
+//                        if let updatedCell = self.tableviewAtHome.cellForRow(at: indexPath) as? HomeTableViewCell {
+//                            updatedCell.ellipsisButtonInColorSideBar.menu = UIMenu(children: [
+//                                UIAction(title: "Fav", image: UIImage(systemName: "heart.fill")) { _ in
+//                                    CoreDataManager.shared.deleteSingleColor(name: colorPalette.colors.first ?? "#FFFFFF")
+//                                    self.refreshFavorites()
+//                                },
+//                                UIAction(title: "Lock", image: UIImage(systemName: "lock")) { _ in
+//                                    print("Lock tapped for \(colorPalette.name)")
+//                                },
+//                                UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc")) { _ in
+//                                    print("Copied \(colorPalette.name)")
+//                                },
+//                                UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in }
+//                            ])
+//                        }
+//                    }
+//                }
+//            }
+//            
+//            let lockAction = UIAction(title: "Lock", image: UIImage(systemName: "lock")) { _ in
+//                print("Lock tapped for \(colorPalette?.name ?? "unknown")")
+//            }
+//          
+//            let copyAction = UIAction(
+//                title: "Copy",
+//                image: UIImage(systemName: isCopied ? "doc.on.doc.fill" : "doc.on.doc")
+//            ) { [weak self] _ in
+//                guard let self = self else { return }
+//                UIPasteboard.general.string = colorPalette?.colors.first
+//                self.copiedPalette = colorPalette?.colors.first
+//                
+//                DispatchQueue.main.async {
+//                    
+//                    self.tableviewAtHome.reloadData()
+//                    // Update icons
+//                }
+//            }
+//            let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in }
+//            
+//            cell.ellipsisButtonInColorSideBar.menu = UIMenu(children: [favAction, lockAction, copyAction, shareAction])
+//            cell.ellipsisButtonInColorSideBar.showsMenuAsPrimaryAction = true
+            let colorName = colorPalette?.colors.first ?? "#FFFFFF"
+            let isSaved = CoreDataManager.shared.isSingleColorSaved(name: colorName)
+            let isCopied = UIPasteboard.general.string == colorName
+
+            let favAction = UIAction(title: "Fav", image: UIImage(systemName: isSaved ? "heart.fill" : "heart")) { [weak self] _ in
+                print("before the guard")
+                guard let self = self else { return }
+                print("after the guard")
                 if isSaved {
                     let alert = UIAlertController(
                         title: "Unsave Color",
                         message: "Do you want to unsave this color?",
                         preferredStyle: .alert
                     )
-                   
                     let unsaveAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
-                        CoreDataManager.shared.deleteSingleColor(name: colorPalette.colors.first ?? "")
-                        
+                        CoreDataManager.shared.deleteSingleColor(name: colorName)
                         DispatchQueue.main.async {
-                            if let updatedCell = self.tableviewAtHome.cellForRow(at: indexPath) as? HomeTableViewCell {
-                                updatedCell.ellipsisButtonInColorSideBar.menu = UIMenu(children: [
-                                    UIAction(title: "Fav", image: UIImage(systemName: "heart")) { _ in
-                                        
-                                        CoreDataManager.shared.saveSingleColor(name: colorPalette.colors.first ?? "FFFFF")
-                                            
-                                        self.refreshFavorites()
-                                    },
-                                    UIAction(title: "Lock", image: UIImage(systemName: "lock")) { _ in
-                                        print("Lock tapped for \(colorPalette.name)")
-                                    },
-                                    UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc")) { _ in
-                                        print("Copied \(colorPalette.name)")
-                                    },
-                                    
-                                    UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in }
-                                ])
-                            }
+                            self.tableviewAtHome.reloadData()
                         }
                     }
                     let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
@@ -144,50 +212,35 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                     alert.addAction(cancelAction)
                     self.present(alert, animated: true, completion: nil)
                 } else {
-                    CoreDataManager.shared.saveSingleColor(name: colorPalette.colors.first ?? "#FFFFFF")
+                    CoreDataManager.shared.saveSingleColor(name: colorName)
                     DispatchQueue.main.async {
-                        if let updatedCell = self.tableviewAtHome.cellForRow(at: indexPath) as? HomeTableViewCell {
-                            updatedCell.ellipsisButtonInColorSideBar.menu = UIMenu(children: [
-                                UIAction(title: "Fav", image: UIImage(systemName: "heart.fill")) { _ in
-                                    CoreDataManager.shared.deleteSingleColor(name: colorPalette.colors.first ?? "#FFFFFF")
-                                    self.refreshFavorites()
-                                },
-                                UIAction(title: "Lock", image: UIImage(systemName: "lock")) { _ in
-                                    print("Lock tapped for \(colorPalette.name)")
-                                },
-                                UIAction(title: "Copy", image: UIImage(systemName: "doc.on.doc")) { _ in
-                                    print("Copied \(colorPalette.name)")
-                                },
-                                UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in }
-                            ])
-                        }
+                        self.tableviewAtHome.reloadData()
                     }
                 }
             }
-            
+
             let lockAction = UIAction(title: "Lock", image: UIImage(systemName: "lock")) { _ in
-                print("Lock tapped for \(colorPalette?.name ?? "unknown")")
+                print("Lock tapped for \(colorName)")
             }
-          
-            let copyAction = UIAction(
-                title: "Copy",
-                image: UIImage(systemName: isCopied ? "doc.on.doc.fill" : "doc.on.doc")
-            ) { [weak self] _ in
+
+            let copyAction = UIAction(title: "Copy", image: UIImage(systemName: isCopied ? "doc.on.doc.fill" : "doc.on.doc")) { [weak self] _ in
                 guard let self = self else { return }
-                UIPasteboard.general.string = colorPalette?.colors.first
-                self.copiedPalette = colorPalette?.colors.first
-                
+                UIPasteboard.general.string = colorName
+                self.copiedPalette = colorName
                 DispatchQueue.main.async {
-                    
                     self.tableviewAtHome.reloadData()
-                    // Update icons
                 }
             }
-            let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in }
-            
+
+            let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+                let activityVC = UIActivityViewController(activityItems: [colorName], applicationActivities: nil)
+                if let viewController = self.tableviewAtHome.window?.rootViewController {
+                    viewController.present(activityVC, animated: true)
+                }
+            }
+
             cell.ellipsisButtonInColorSideBar.menu = UIMenu(children: [favAction, lockAction, copyAction, shareAction])
             cell.ellipsisButtonInColorSideBar.showsMenuAsPrimaryAction = true
-            
             // Keep the original cell.buttonAction as is (for heart button on top)
             cell.buttonAction = {
                 if let namedColors = self.namedColors, indexPath.row < namedColors.count {

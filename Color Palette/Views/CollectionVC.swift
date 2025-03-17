@@ -73,52 +73,106 @@ class CollectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 cell.underLine.backgroundColor = UIColor(hex: firstColor)
                 cell.configureCell(with: colorArray)
                 
-                let isCopied = palette.name == copiedPalette
-                
-                let favAction = UIAction(title: "Fav", image: UIImage(systemName: "heart")) { _ in
-                    print("Fav tapped for \(palette.name ?? "unknown")")
-                }
-                let lockAction = UIAction(title: "Lock", image: UIImage(systemName: "lock")) { _ in
-                    print("Lock tapped for \(palette.name ?? "unknown")")
-                }
-                let copyAction = UIAction(
-                    title: "Copy",
-                    image: UIImage(systemName: isCopied ? "doc.on.doc.fill" : "doc.on.doc")
-                ) { [weak self] _ in
+//                let isCopied = palette.name == copiedPalette
+//                
+//                let favAction = UIAction(title: "Fav", image: UIImage(systemName: "heart")) { _ in
+//                    print("Fav tapped for \(palette.name ?? "unknown")")
+//                }
+//                let lockAction = UIAction(title: "Lock", image: UIImage(systemName: "lock")) { _ in
+//                    print("Lock tapped for \(palette.name ?? "unknown")")
+//                }
+//                let copyAction = UIAction(
+//                    title: "Copy",
+//                    image: UIImage(systemName: isCopied ? "doc.on.doc.fill" : "doc.on.doc")
+//                ) { [weak self] _ in
+//                    guard let self = self else { return }
+//                    UIPasteboard.general.string = palette.name
+//                    self.copiedPalette = palette.name
+//                    print("Copied \(palette.name ?? "unknown")")
+//                    DispatchQueue.main.async {
+//                       
+//                        self.tableViewInCollectonVC.reloadData() // Update icons
+//                    }
+//                }
+//                let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+//                    let activityVC = UIActivityViewController(activityItems: [palette.name ?? ""], applicationActivities: nil)
+//                    self.present(activityVC, animated: true)
+//                }
+//                cell.ellipsisButtonInColorSideBar.menu = UIMenu(children: [favAction, lockAction, copyAction, shareAction])
+//                cell.ellipsisButtonInColorSideBar.showsMenuAsPrimaryAction = true
+//                
+//                cell.buttonAction = { [weak self] in
+//                    guard let self = self else { return }
+//                    let selectedPalette = self.favNamedColorPalettes[indexPath.row]
+//                    let alert = UIAlertController(
+//                        title: "Unsave Color",
+//                        message: "Do you want to unsave this color?",
+//                        preferredStyle: .alert
+//                    )
+//                    let unsaveAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
+//                        let colorPalette = ColorPalette(name: selectedPalette.name ?? "", colors: (selectedPalette.colors as? [String]) ?? [])
+//                        CoreDataManager.shared.deletePalette(colorPalette)
+//                        self.fetchFavorites()
+//                    }
+//                    let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+//                    alert.addAction(unsaveAction)
+//                    alert.addAction(cancelAction)
+//                    self.present(alert, animated: true, completion: nil)
+//                }
+                let colorName = firstColor
+                let isSaved = CoreDataManager.shared.isSingleColorSaved(name: colorName)
+                let isCopied = UIPasteboard.general.string == colorName
+
+                let favAction = UIAction(title: "Fav", image: UIImage(systemName: isSaved ? "heart.fill" : "heart")) { [weak self] _ in
+                    print("before the guard")
                     guard let self = self else { return }
-                    UIPasteboard.general.string = palette.name
-                    self.copiedPalette = palette.name
-                    print("Copied \(palette.name ?? "unknown")")
-                    DispatchQueue.main.async {
-                       
-                        self.tableViewInCollectonVC.reloadData() // Update icons
+                    print("after the guard")
+                    if isSaved {
+                        let alert = UIAlertController(
+                            title: "Unsave Color",
+                            message: "Do you want to unsave this color?",
+                            preferredStyle: .alert
+                        )
+                        let unsaveAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
+                            CoreDataManager.shared.deleteSingleColor(name: colorName)
+                            DispatchQueue.main.async {
+                                self.tableViewInCollectonVC.reloadData()
+                            }
+                        }
+                        let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+                        alert.addAction(unsaveAction)
+                        alert.addAction(cancelAction)
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        CoreDataManager.shared.saveSingleColor(name: colorName)
+                        DispatchQueue.main.async {
+                            self.tableViewInCollectonVC.reloadData()
+                        }
                     }
                 }
-                let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
-                    let activityVC = UIActivityViewController(activityItems: [palette.name ?? ""], applicationActivities: nil)
-                    self.present(activityVC, animated: true)
+
+                let lockAction = UIAction(title: "Lock", image: UIImage(systemName: "lock")) { _ in
+                    print("Lock tapped for \(colorName)")
                 }
+
+                let copyAction = UIAction(title: "Copy", image: UIImage(systemName: isCopied ? "doc.on.doc.fill" : "doc.on.doc")) { [weak self] _ in
+                    guard let self = self else { return }
+                    UIPasteboard.general.string = colorName
+                    self.copiedPalette = colorName
+                    DispatchQueue.main.async {
+                        self.tableViewInCollectonVC.reloadData()
+                    }
+                }
+
+                let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+                    let activityVC = UIActivityViewController(activityItems: [colorName], applicationActivities: nil)
+                    if let viewController = self.tableViewInCollectonVC.window?.rootViewController {
+                        viewController.present(activityVC, animated: true)
+                    }
+                }
+
                 cell.ellipsisButtonInColorSideBar.menu = UIMenu(children: [favAction, lockAction, copyAction, shareAction])
                 cell.ellipsisButtonInColorSideBar.showsMenuAsPrimaryAction = true
-                
-                cell.buttonAction = { [weak self] in
-                    guard let self = self else { return }
-                    let selectedPalette = self.favNamedColorPalettes[indexPath.row]
-                    let alert = UIAlertController(
-                        title: "Unsave Color",
-                        message: "Do you want to unsave this color?",
-                        preferredStyle: .alert
-                    )
-                    let unsaveAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
-                        let colorPalette = ColorPalette(name: selectedPalette.name ?? "", colors: (selectedPalette.colors as? [String]) ?? [])
-                        CoreDataManager.shared.deletePalette(colorPalette)
-                        self.fetchFavorites()
-                    }
-                    let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
-                    alert.addAction(unsaveAction)
-                    alert.addAction(cancelAction)
-                    self.present(alert, animated: true, completion: nil)
-                }
             }
             return cell
         } else {
