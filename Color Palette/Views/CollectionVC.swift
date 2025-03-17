@@ -101,24 +101,24 @@ class CollectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 //                cell.ellipsisButtonInColorSideBar.menu = UIMenu(children: [favAction, lockAction, copyAction, shareAction])
 //                cell.ellipsisButtonInColorSideBar.showsMenuAsPrimaryAction = true
 //                
-//                cell.buttonAction = { [weak self] in
-//                    guard let self = self else { return }
-//                    let selectedPalette = self.favNamedColorPalettes[indexPath.row]
-//                    let alert = UIAlertController(
-//                        title: "Unsave Color",
-//                        message: "Do you want to unsave this color?",
-//                        preferredStyle: .alert
-//                    )
-//                    let unsaveAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
-//                        let colorPalette = ColorPalette(name: selectedPalette.name ?? "", colors: (selectedPalette.colors as? [String]) ?? [])
-//                        CoreDataManager.shared.deletePalette(colorPalette)
-//                        self.fetchFavorites()
-//                    }
-//                    let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
-//                    alert.addAction(unsaveAction)
-//                    alert.addAction(cancelAction)
-//                    self.present(alert, animated: true, completion: nil)
-//                }
+                cell.buttonAction = { [weak self] in
+                    guard let self = self else { return }
+                    let selectedPalette = self.favNamedColorPalettes[indexPath.row]
+                    let alert = UIAlertController(
+                        title: "Unsave Color",
+                        message: "Do you want to unsave this color?",
+                        preferredStyle: .alert
+                    )
+                    let unsaveAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
+                        let colorPalette = ColorPalette(name: selectedPalette.name ?? "", colors: (selectedPalette.colors as? [String]) ?? [])
+                        CoreDataManager.shared.deletePalette(colorPalette)
+                        self.fetchFavorites()
+                    }
+                    let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+                    alert.addAction(unsaveAction)
+                    alert.addAction(cancelAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
                 let colorName = firstColor
                 let isSaved = CoreDataManager.shared.isSingleColorSaved(name: colorName)
                 let isCopied = UIPasteboard.general.string == colorName
