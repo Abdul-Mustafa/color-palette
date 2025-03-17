@@ -132,6 +132,63 @@ class TopTableViewCellInCollectionVC: UITableViewCell, UICollectionViewDelegate,
         cell.colorCodeInBottomCenterInCollectionViewCell.textColor = textColor
         cell.ellipsisButtonInCollectionViewCell.tintColor = textColor
         cell.backgroundColor = backgroundColor
+        let isSaved = CoreDataManager.shared.isSingleColorSaved(name: colorName)
+        
+        let isCopied = UIPasteboard.general.string == colorName
+        
+        let favAction = UIAction(title: "Fav", image: UIImage(systemName: isSaved ? "heart.fill" : "heart")) { [weak self] _ in
+            print("before the guard")
+            guard let self = self else { return }
+            print("after the guard")
+            if isSaved {
+                let alert = UIAlertController(
+                    title: "Unsave Color",
+                    message: "Do you want to unsave this color?",
+                    preferredStyle: .alert
+                )
+                let unsaveAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
+                    CoreDataManager.shared.deleteSingleColor(name: colorName)
+                    DispatchQueue.main.async {
+                        self.topCollectionviewInCollectionVC.reloadData()
+                    }
+                }
+                let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+                alert.addAction(unsaveAction)
+                alert.addAction(cancelAction)
+                if let rootVC = self.window?.rootViewController {
+                    rootVC.present(alert, animated: true, completion: nil)
+                }
+            } else {
+                CoreDataManager.shared.saveSingleColor(name: colorName)
+                DispatchQueue.main.async {
+                    self.topCollectionviewInCollectionVC.reloadData()
+                }
+            }
+        }
+      
+        let lockAction = UIAction(title: "Lock", image: UIImage(systemName: "lock")) { _ in
+            print("Lock tapped for \(colorName)")
+        }
+        
+        let copyAction = UIAction(title: "Copy", image: UIImage(systemName: isCopied ? "doc.on.doc.fill" : "doc.on.doc")) { [weak self] _ in
+            guard let self = self else { return }
+            UIPasteboard.general.string = colorName
+            
+            DispatchQueue.main.async {
+                
+                self.topCollectionviewInCollectionVC.reloadData() // Reload all cells to update "Copy" icons
+            }
+        }
+        
+        let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+            let activityVC = UIActivityViewController(activityItems: [colorName], applicationActivities: nil)
+            if let viewController = collectionView.window?.rootViewController {
+                viewController.present(activityVC, animated: true)
+            }
+        }
+        
+        cell.ellipsisButtonInCollectionViewCell.menu = UIMenu(children: [favAction, lockAction, copyAction, shareAction])
+        cell.ellipsisButtonInCollectionViewCell.showsMenuAsPrimaryAction = true
         
         return cell
     }

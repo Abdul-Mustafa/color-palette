@@ -32,7 +32,7 @@ class MoreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         .type2(name: "profile", label: "Profile", buttonTitle: "arrow"),
         .type2(name: "world", label: "Language", buttonTitle: "arrow"),
         .type2(name: "phone", label: "Vibration", buttonTitle: "arrow"),
-        .type3(label: "Share the App"),
+        .type3(label: "More Apps"),
         .type4(name: "privacy", label: "Privacy Policy"),
         .type4(name: "receipt", label: "Terms of Uses"),
         .type4(name: "privacy", label: "Rate Us")
