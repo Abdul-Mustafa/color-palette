@@ -1775,27 +1775,25 @@
                                         <rect key="frame" x="0.0" y="55" width="430" height="128"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4k-BN-tXs">
-                                                <rect key="frame" x="20" y="87" width="44" height="21"/>
+                                                <rect key="frame" x="32.333333333333336" y="87" width="44.000000000000007" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.94901960780000005" green="0.27450980390000002" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="frN-Ch-SJ6">
-                                                <rect key="frame" x="22.333333333333332" y="108" width="39.333333333333343" height="2"/>
-                                                <color key="backgroundColor" systemColor="labelColor"/>
+                                                <rect key="frame" x="34.666666666666657" y="108" width="39.333333333333343" height="2"/>
+                                                <color key="backgroundColor" red="0.94901960780000005" green="0.27450980390000002" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="bs0-cm-FLk"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBrownColor"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="y4k-BN-tXs" secondAttribute="bottom" constant="20" id="Nxd-FU-ZJS"/>
                                             <constraint firstAttribute="height" constant="128" id="Ot6-wU-YkX"/>
                                             <constraint firstItem="frN-Ch-SJ6" firstAttribute="top" secondItem="y4k-BN-tXs" secondAttribute="bottom" id="b7s-kh-3xl"/>
-                                            <constraint firstItem="frN-Ch-SJ6" firstAttribute="centerX" secondItem="y4k-BN-tXs" secondAttribute="centerX" id="jxt-f2-LVf"/>
                                             <constraint firstItem="frN-Ch-SJ6" firstAttribute="width" secondItem="y4k-BN-tXs" secondAttribute="width" multiplier="0.893939" id="ldW-gn-CEK"/>
-                                            <constraint firstItem="y4k-BN-tXs" firstAttribute="leading" secondItem="B0f-G0-NTP" secondAttribute="leading" constant="20" id="tIR-gs-Jh8"/>
+                                            <constraint firstItem="frN-Ch-SJ6" firstAttribute="centerX" secondItem="y4k-BN-tXs" secondAttribute="centerX" id="wjW-zb-xht"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Vv-7w-rtf">
@@ -1812,6 +1810,7 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="exitButton:" destination="vM9-Fz-bRk" eventType="touchUpInside" id="Cju-Dy-so4"/>
+                                            <action selector="exitButtonAction:" destination="dDM-Zc-lST" eventType="touchUpInside" id="RKT-sT-sbO"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YWe-lG-lRV">
@@ -1917,7 +1916,6 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                         <constraints>
                                             <constraint firstItem="huC-Jd-m2a" firstAttribute="leading" secondItem="JoL-Mq-v8u" secondAttribute="trailing" constant="20" id="0VU-69-Fqd"/>
                                             <constraint firstItem="u64-nE-Lig" firstAttribute="centerY" secondItem="gwT-Rb-bBB" secondAttribute="centerY" id="321-F3-o5Y"/>
@@ -1971,11 +1969,11 @@
                                                     <color key="baseForegroundColor" systemColor="opaqueSeparatorColor"/>
                                                 </buttonConfiguration>
                                                 <connections>
+                                                    <action selector="copyButtonAtBottom:" destination="dDM-Zc-lST" eventType="touchUpInside" id="Bzh-LT-iy5"/>
                                                     <action selector="copyButtonPressed:" destination="vM9-Fz-bRk" eventType="touchUpInside" id="JWc-g7-JnK"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="dgy-y9-biI" firstAttribute="centerY" secondItem="QSr-8g-h60" secondAttribute="centerY" id="0yv-VJ-hpU"/>
                                             <constraint firstItem="kqv-Im-g1U" firstAttribute="width" secondItem="yHT-0V-eVt" secondAttribute="width" multiplier="0.477519" id="4Wn-I5-RSm"/>
@@ -1989,7 +1987,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IqY-ob-MqV">
-                                        <rect key="frame" x="264" y="20" width="63" height="35"/>
+                                        <rect key="frame" x="252" y="20" width="63" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="63" id="A7x-CQ-s8E"/>
                                             <constraint firstAttribute="height" constant="35" id="JZq-C2-Y1p"/>
@@ -2000,14 +1998,15 @@
                                             <color key="baseBackgroundColor" red="0.94901960780000005" green="0.27450980390000002" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                                         </buttonConfiguration>
                                         <connections>
+                                            <action selector="saveButton:" destination="dDM-Zc-lST" eventType="touchUpInside" id="fsk-uz-lte"/>
                                             <action selector="savePalettes:" destination="vM9-Fz-bRk" eventType="touchUpInside" id="65N-Vj-tqq"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6iE-Ar-Cnr">
-                                        <rect key="frame" x="347" y="20" width="63" height="35"/>
+                                        <rect key="frame" x="335" y="20" width="75" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="Eer-KZ-EXM"/>
-                                            <constraint firstAttribute="width" constant="63" id="noJ-AH-Ikt"/>
+                                            <constraint firstAttribute="width" constant="75" id="noJ-AH-Ikt"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Share">
@@ -2016,6 +2015,7 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="savePalettes:" destination="vM9-Fz-bRk" eventType="touchUpInside" id="HU4-ca-d0d"/>
+                                            <action selector="shareButton:" destination="dDM-Zc-lST" eventType="touchUpInside" id="PhX-3f-xyS"/>
                                         </connections>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WOc-9c-9fN">
@@ -2028,7 +2028,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCellInUploadedImagePalettesVC" id="eeh-21-z4m" customClass="CollectionViewCellInUploadedImagePalettesVC" customModule="Color_Palette" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AdjustmentVCCollectionViewCell" id="eeh-21-z4m" customClass="AdjustmentVCCollectionViewCell" customModule="Color_Palette" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="75" height="89"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Hak-Tl-BIb">
@@ -2057,8 +2057,8 @@
                                                 </collectionViewCellContentView>
                                                 <size key="customSize" width="75" height="89"/>
                                                 <connections>
-                                                    <outlet property="colorView" destination="dr1-px-9Ea" id="oD5-lq-yc2"/>
-                                                    <outlet property="hexaCodeLabel" destination="HaL-Ei-5s7" id="fa3-tc-78z"/>
+                                                    <outlet property="colorView" destination="dr1-px-9Ea" id="E4A-F9-17O"/>
+                                                    <outlet property="hexaCodeLabel" destination="HaL-Ei-5s7" id="raL-U0-QdD"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -2082,6 +2082,7 @@
                                     <constraint firstItem="IqY-ob-MqV" firstAttribute="top" secondItem="Ai7-vz-E5L" secondAttribute="top" constant="20" symbolic="YES" id="blF-mm-Zfh"/>
                                     <constraint firstItem="YWe-lG-lRV" firstAttribute="height" secondItem="Ai7-vz-E5L" secondAttribute="height" multiplier="0.25" id="cWX-0M-kgN"/>
                                     <constraint firstItem="yHT-0V-eVt" firstAttribute="leading" secondItem="Ai7-vz-E5L" secondAttribute="leading" id="ddQ-Kw-PD2"/>
+                                    <constraint firstItem="WOc-9c-9fN" firstAttribute="leading" secondItem="y4k-BN-tXs" secondAttribute="leading" id="eKY-0F-Tgu"/>
                                     <constraint firstItem="WOc-9c-9fN" firstAttribute="width" secondItem="Ai7-vz-E5L" secondAttribute="width" multiplier="0.85" id="hcV-xe-A75"/>
                                     <constraint firstItem="B0f-G0-NTP" firstAttribute="top" secondItem="IqY-ob-MqV" secondAttribute="bottom" id="iY1-HE-Anj"/>
                                     <constraint firstItem="IqY-ob-MqV" firstAttribute="centerY" secondItem="6iE-Ar-Cnr" secondAttribute="centerY" id="nlb-uz-S12"/>
@@ -2101,6 +2102,11 @@
                             <constraint firstItem="Ai7-vz-E5L" firstAttribute="top" secondItem="iQN-bO-Ftu" secondAttribute="top" id="NzP-Hj-2HE"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="WOc-9c-9fN" id="BqX-DY-7Xp"/>
+                        <outlet property="colorTitle" destination="y4k-BN-tXs" id="VaO-4d-m2a"/>
+                        <outlet property="exitButtonView" destination="5Vv-7w-rtf" id="50s-2z-BiI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vlA-lo-eFw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -497,10 +497,10 @@ class SlectedPaletteInExploreVC: UIViewController, UITabBarDelegate, UICollectio
             return
         }
         
-        if let indexPath = selectedIndexPath, let selectedColor = selectedPalette?.colors[indexPath.row] {
+        if let indexPath = selectedIndexPath, let selectedColor = selectedPalette {
             adjustmentVC.selectedColor = selectedColor
         }
-        
+        adjustmentVC.modalPresentationStyle = .fullScreen
         present(adjustmentVC, animated: true, completion: nil)
         // Alternative: navigationController?.pushViewController(adjustmentVC, animated: true)
     }
