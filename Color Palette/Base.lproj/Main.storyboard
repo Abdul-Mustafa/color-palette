@@ -687,6 +687,7 @@
                                                             <connections>
                                                                 <outlet property="colorNameInHexaCodeFormatInBottomCollectionViewCell" destination="aZ4-5N-5bo" id="LMD-0A-qN8"/>
                                                                 <outlet property="colorViewInBottomCollectionViewCell" destination="ONN-W5-XIm" id="qHN-Nr-bwn"/>
+                                                                <outlet property="viewWithColorLabel" destination="fq1-Mg-1zK" id="QWo-mj-vWF"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
