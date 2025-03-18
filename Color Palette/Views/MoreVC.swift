@@ -239,23 +239,23 @@ extension MoreVC {
         
         navigationItem.titleView = titleLabel
         
-        let boldConfig = UIImage.SymbolConfiguration(weight: .bold)
-        let listImage = UIImage(systemName: "list.bullet", withConfiguration: boldConfig)
-        
-        let listButton = UIBarButtonItem(
-            image: listImage,
-            style: .plain,
-            target: self,
-            action: #selector(listButtonTapped)
-        )
-        
-        listButton.tintColor = .white
-        navigationItem.rightBarButtonItem = listButton
+//        let boldConfig = UIImage.SymbolConfiguration(weight: .bold)
+//        let listImage = UIImage(systemName: "list.bullet", withConfiguration: boldConfig)
+//        
+//        let listButton = UIBarButtonItem(
+//            image: listImage,
+//            style: .plain,
+//            target: self,
+//            action: #selector(listButtonTapped)
+//        )
+//        
+//        listButton.tintColor = .white
+//        navigationItem.rightBarButtonItem = listButton
     }
     
-    @objc func listButtonTapped() {
-        print("List button tapped")
-    }
+//    @objc func listButtonTapped() {
+//        print("List button tapped")
+//    }
 }
 
 // MARK: - Search Controller Setup
