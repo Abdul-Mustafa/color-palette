@@ -167,6 +167,7 @@
 				DEVELOPMENT_TEAM = PVBD4GT3CM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Color Palette/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to your camera to capture images and create custom color palettes based on the colors in your photos. Your images are processed locally on your device and are not stored or shared without your explicit consent.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -196,6 +197,7 @@
 				DEVELOPMENT_TEAM = PVBD4GT3CM;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Color Palette/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to your camera to capture images and create custom color palettes based on the colors in your photos. Your images are processed locally on your device and are not stored or shared without your explicit consent.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
