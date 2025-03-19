@@ -11,6 +11,8 @@ class CollectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableViewInCollectonVC.allowsSelection = false
+
         tableViewInCollectonVC.delegate = self
         tableViewInCollectonVC.dataSource = self
         tableViewInCollectonVC.showsVerticalScrollIndicator = false

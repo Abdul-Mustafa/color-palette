@@ -100,6 +100,7 @@ class BottomTableViewCellInCollectionVC: UITableViewCell, UICollectionViewDataSo
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         bottomCollectionViewInCollectonVC.dataSource = self
         bottomCollectionViewInCollectonVC.delegate = self
         bottomCollectionViewInCollectonVC.allowsSelection = true // Enable cell selection
