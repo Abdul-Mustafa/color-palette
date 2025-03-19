@@ -16,8 +16,12 @@ class BottomTableViewCellInCollectionVC: UITableViewCell, UICollectionViewDataSo
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         bottomCollectionViewInCollectonVC.dataSource = self
         bottomCollectionViewInCollectonVC.delegate = self
+        if let layout = bottomCollectionViewInCollectonVC.collectionViewLayout as? UICollectionViewFlowLayout {
+                    layout.estimatedItemSize = .zero // Enforce exact size
+                }
         fetchSingleColor()
         NotificationCenter.default.addObserver(
             self,
