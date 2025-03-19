@@ -425,13 +425,14 @@ class SlectedPaletteInExploreVC: UIViewController, UITabBarDelegate, UICollectio
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
+
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Initial setup
-        print(selectedPalette)
+       
         colorTitle.text = selectedPalette?.name
         colorView.backgroundColor = UIColor(hex: selectedPalette?.colors.first ?? "#FFFFFF")
         

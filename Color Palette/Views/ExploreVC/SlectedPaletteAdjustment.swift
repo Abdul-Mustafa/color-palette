@@ -1,69 +1,9 @@
-////
-////  SlectedPaletteAdjustment.swift
-////  Color Palette
-////
-////  Created by mac on 15/03/2025.
-////
 //
-//import UIKit
+//  SlectedPaletteAdjustment.swift
+//  Color Palette
 //
-//class SlectedPaletteAdjustment: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        selectedColor?.colors.count ?? 0
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "AdjustmentVCCollectionViewCell", for: indexPath) as! AdjustmentVCCollectionViewCell
-//        cell.colorView.backgroundColor = UIColor(hexString: selectedColor?.colors[indexPath.row] ?? "#FFFFFF")
-//        cell.hexaCodeLabel.text = selectedColor?.colors[indexPath.row]
-//        
-//        return cell
-//    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: collectionView.frame.size.width / 5, height: collectionView.frame.size.height)
-//    }
-//    
-//    var selectedColor: ColorPalette? // Property to receive the hex code
+//  Created by mac on 15/03/2025.
 //
-//    @IBOutlet weak var colorCodeInBottom: UILabel!
-//    @IBOutlet weak var collectionView: UICollectionView!
-//    @IBOutlet weak var colorTitle: UILabel!
-//    @IBOutlet weak var exitButtonView: UIButton!
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        collectionView.dataSource = self
-//        collectionView.delegate = self
-//        colorTitle.text = selectedColor?.name
-//        exitButtonView.layer.cornerRadius = exitButtonView.frame.height / 2
-//        exitButtonView.clipsToBounds = true
-//        view.backgroundColor = .white
-//        if let color = selectedColor {
-//            print("Received color: \(color)")
-//            // Use the color as needed (e.g., set a view's background)
-//        }
-//        //
-//        collectionView.isScrollEnabled = true
-//        collectionView.showsVerticalScrollIndicator = false
-//        collectionView.showsHorizontalScrollIndicator = false
-//        
-//        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-//            layout.scrollDirection = .horizontal
-//        }
-//    
-//        //
-//    }
-//    @IBAction func copyButtonAtBottom(_ sender: Any) {
-//    }
-//    @IBAction func exitButtonAction(_ sender: Any) {
-//        self.dismiss(animated: true)
-//    }
-//    @IBAction func saveButton(_ sender: Any) {
-//    }
-//    @IBAction func shareButton(_ sender: Any) {
-//    }
-//    
-//}
 
 import UIKit
 
@@ -87,22 +27,26 @@ class SlectedPaletteAdjustment: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet weak var copyButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
-    
+    //
+    @IBOutlet weak var rSliderResultView: UIView!
+
+    @IBOutlet weak var gSliderResultView: UIView!
+
+    @IBOutlet weak var bSliderResultView: UIView!
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        sliderResultContainers()
         setupView()
         setupCollectionView()
         setupSliders()
         
         colorTitle.text = selectedColor?.name
+        
         exitButtonView.layer.cornerRadius = exitButtonView.frame.height / 2
         exitButtonView.clipsToBounds = true
-        
-        if let color = selectedColor {
-            print("Received color: \(color)")
-        }
+    
         
         // Select first item by default
         if selectedColor?.colors.count ?? 0 > 0 {
@@ -201,6 +145,22 @@ class SlectedPaletteAdjustment: UIViewController, UICollectionViewDataSource, UI
         bSliderResult.text = String(format: "%.0f", sender.value)
         updateFinalColor()
     }
+    private func sliderResultContainers() {
+        rSliderResultView.layer.cornerRadius = 5.0
+        rSliderResultView.layer.borderWidth = 1.0
+        rSliderResultView.layer.borderColor = UIColor.red.cgColor
+        rSliderResultView.clipsToBounds = true
+        
+        gSliderResultView.layer.cornerRadius = 5.0
+        gSliderResultView.layer.borderWidth = 1.0
+        gSliderResultView.layer.borderColor = UIColor.green.cgColor
+        gSliderResultView.clipsToBounds = true
+        
+        bSliderResultView.layer.cornerRadius = 5.0
+        bSliderResultView.layer.borderWidth = 1.0
+        bSliderResultView.layer.borderColor = UIColor.blue.cgColor
+        bSliderResultView.clipsToBounds = true
+    }
     
     // MARK: - Private Methods
     private func updateFinalColor() {
@@ -255,8 +215,10 @@ class SlectedPaletteAdjustment: UIViewController, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AdjustmentVCCollectionViewCell", for: indexPath) as! AdjustmentVCCollectionViewCell
         let colorHex = selectedColor?.colors[indexPath.row] ?? "#FFFFFF"
+        
         cell.colorView.backgroundColor = UIColor(hexString: colorHex)
         cell.hexaCodeLabel.text = colorHex
+        print(cell.hexaCodeLabel.text)
         return cell
     }
     

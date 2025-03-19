@@ -1227,7 +1227,7 @@
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kS4-Mk-J6y">
                                                                                             <rect key="frame" x="23" y="21" width="62" height="13.333333333333336"/>
                                                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                                                            <nil key="textColor"/>
+                                                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                     </subviews>
@@ -1760,7 +1760,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ia-m1-aiQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2225" y="535"/>
+            <point key="canvasLocation" x="2128" y="549"/>
         </scene>
         <!--Slected Palette Adjustment-->
         <scene sceneID="yMc-eC-yvW">
@@ -2106,6 +2106,7 @@
                     <connections>
                         <outlet property="bSliderOutlet" destination="gwT-Rb-bBB" id="zMj-qI-dZK"/>
                         <outlet property="bSliderResult" destination="cco-El-8u9" id="pgx-Vt-tZw"/>
+                        <outlet property="bSliderResultView" destination="u64-nE-Lig" id="xo3-Ut-iNB"/>
                         <outlet property="collectionView" destination="WOc-9c-9fN" id="BqX-DY-7Xp"/>
                         <outlet property="colorCodeInBottom" destination="dgy-y9-biI" id="9SD-lP-cGx"/>
                         <outlet property="colorTitle" destination="y4k-BN-tXs" id="VaO-4d-m2a"/>
@@ -2113,15 +2114,17 @@
                         <outlet property="exitButtonView" destination="5Vv-7w-rtf" id="DiA-jb-tHs"/>
                         <outlet property="gSliderOutlet" destination="u69-Tf-s8M" id="5ht-bh-hlO"/>
                         <outlet property="gSliderResult" destination="qBa-lj-BKt" id="bAy-Ux-Fc4"/>
+                        <outlet property="gSliderResultView" destination="1Jh-tj-KHN" id="z0G-Rb-kaf"/>
                         <outlet property="rSliderOutlet" destination="JoL-Mq-v8u" id="XnM-qS-OSK"/>
                         <outlet property="rSliderResult" destination="0ja-TR-hMt" id="Lf3-nX-qIp"/>
+                        <outlet property="rSliderResultView" destination="huC-Jd-m2a" id="jna-jc-Cwy"/>
                         <outlet property="saveButton" destination="IqY-ob-MqV" id="zvY-V0-Vba"/>
                         <outlet property="shareButton" destination="6iE-Ar-Cnr" id="9A5-0n-SEc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vlA-lo-eFw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-837.20930232558135" y="548.49785407725324"/>
+            <point key="canvasLocation" x="-100" y="1210"/>
         </scene>
         <!--Home-->
         <scene sceneID="jdY-xa-9cc">
