@@ -54,15 +54,24 @@ class BottomTableViewCellInCollectionVC: UITableViewCell, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return singleColorsInCorData.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = bottomCollectionViewInCollectonVC.dequeueReusableCell(withReuseIdentifier: "BottomCollectionViewCellInCollectionVC", for: indexPath) as! BottomCollectionViewCellInCollectionVC
         let colorName = singleColorsInCorData[indexPath.row]
         let backgroundColor = UIColor(hexString: colorName.name ?? "")
         cell.colorViewInBottomCollectionViewCell.backgroundColor = backgroundColor
         cell.colorNameInHexaCodeFormatInBottomCollectionViewCell.text = colorName.name
+        cell.updateButtonColors() // Update button tint colors
         return cell
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = bottomCollectionViewInCollectonVC.dequeueReusableCell(withReuseIdentifier: "BottomCollectionViewCellInCollectionVC", for: indexPath) as! BottomCollectionViewCellInCollectionVC
+//        let colorName = singleColorsInCorData[indexPath.row]
+//        let backgroundColor = UIColor(hexString: colorName.name ?? "")
+//        cell.colorViewInBottomCollectionViewCell.backgroundColor = backgroundColor
+//        cell.colorNameInHexaCodeFormatInBottomCollectionViewCell.text = colorName.name
+//        return cell
+//    }
     
     // Set square size for collection view cells (example: 50x50)
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
