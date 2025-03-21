@@ -324,11 +324,33 @@ class MoreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 //            break
 //        }
 //    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        let dataIndex = groupedData[indexPath.section][indexPath.row]
+//        
+//        // Check if it's the "Unlock All Features" cell (type1)
+//        switch tableData[dataIndex] {
+//        case .type1(_, let label1, _, _):
+//            if label1 == "Unlock" { // Verify it's the "Unlock All Features" cell
+//                presentProScreenVC()
+//            }
+//            
+//        case .type2:
+//            if hiddenButtonIndices.contains(dataIndex) {
+//                hiddenButtonIndices.remove(dataIndex) // Show the icon again if it was hidden
+//            } else {
+//                hiddenButtonIndices.insert(dataIndex) // Hide the icon
+//            }
+//            tableView.reloadRows(at: [indexPath], with: .automatic)
+//            
+//        default:
+//            break
+//        }
+//    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let dataIndex = groupedData[indexPath.section][indexPath.row]
         
-        // Check if it's the "Unlock All Features" cell (type1)
         switch tableData[dataIndex] {
         case .type1(_, let label1, _, _):
             if label1 == "Unlock" { // Verify it's the "Unlock All Features" cell
@@ -342,6 +364,17 @@ class MoreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 hiddenButtonIndices.insert(dataIndex) // Hide the icon
             }
             tableView.reloadRows(at: [indexPath], with: .automatic)
+            
+        case .type4(_, let label):
+            if label == "Terms of Uses" {
+                if let url = URL(string: termsOfUsesLink) {
+                    UIApplication.shared.open(url)
+                }
+            } else if label == "Privacy Policy" {
+                if let url = URL(string: privacyPolicyLink) {
+                    UIApplication.shared.open(url)
+                }
+            }
             
         default:
             break
