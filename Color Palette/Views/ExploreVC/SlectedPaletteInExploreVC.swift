@@ -106,7 +106,7 @@ class SlectedPaletteInExploreVC: UIViewController, UITabBarDelegate, UICollectio
         collectionView.dataSource = self
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
-            layout.estimatedItemSize = .zero
+           // layout.estimatedItemSize = .zero
             collectionView.isScrollEnabled = true
             collectionView.showsHorizontalScrollIndicator = false
             collectionView.showsVerticalScrollIndicator = false

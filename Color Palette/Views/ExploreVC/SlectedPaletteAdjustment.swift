@@ -55,6 +55,9 @@ class SlectedPaletteAdjustment: UIViewController, UICollectionViewDataSource, UI
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .left)
             collectionView(self.collectionView, didSelectItemAt: indexPath)
         }
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+           layout.estimatedItemSize = .zero
+        }
     }
     
     // MARK: - Setup Methods
