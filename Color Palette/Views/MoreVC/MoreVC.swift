@@ -307,35 +307,80 @@ class MoreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     // Handle cell selection to hide the action button icon
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        let dataIndex = groupedData[indexPath.section][indexPath.row]
+//        
+//        // Only affect cells with action buttons (type1 and type2)
+//        switch tableData[dataIndex] {
+//        case .type1, .type2:
+//            if hiddenButtonIndices.contains(dataIndex) {
+//                hiddenButtonIndices.remove(dataIndex) // Show the icon again if it was hidden
+//            } else {
+//                hiddenButtonIndices.insert(dataIndex) // Hide the icon
+//            }
+//            tableView.reloadRows(at: [indexPath], with: .automatic)
+//        default:
+//            break
+//        }
+//    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let dataIndex = groupedData[indexPath.section][indexPath.row]
         
-        // Only affect cells with action buttons (type1 and type2)
+        // Check if it's the "Unlock All Features" cell (type1)
         switch tableData[dataIndex] {
-        case .type1, .type2:
+        case .type1(_, let label1, _, _):
+            if label1 == "Unlock" { // Verify it's the "Unlock All Features" cell
+                presentProScreenVC()
+            }
+            
+        case .type2:
             if hiddenButtonIndices.contains(dataIndex) {
                 hiddenButtonIndices.remove(dataIndex) // Show the icon again if it was hidden
             } else {
                 hiddenButtonIndices.insert(dataIndex) // Hide the icon
             }
             tableView.reloadRows(at: [indexPath], with: .automatic)
+            
         default:
             break
         }
     }
-    
     // MARK: - Button Action
     
+//    @objc func buttonTapped(_ sender: UIButton) {
+//        let index = sender.tag
+//        switch tableData[index] {
+//        case .type1(_, _, _, let buttonTitle):
+//            print("Button tapped in Type1 cell: \(buttonTitle)")
+//        case .type2(_, _, let buttonTitle):
+//            print("Button tapped in Type2 cell: \(buttonTitle)")
+//        default:
+//            break
+//        }
+//    }
     @objc func buttonTapped(_ sender: UIButton) {
         let index = sender.tag
         switch tableData[index] {
         case .type1(_, _, _, let buttonTitle):
             print("Button tapped in Type1 cell: \(buttonTitle)")
+            if buttonTitle == "arrow" {
+                presentProScreenVC()
+            }
+            
         case .type2(_, _, let buttonTitle):
             print("Button tapped in Type2 cell: \(buttonTitle)")
+            
         default:
             break
+        }
+    }
+    private func presentProScreenVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let proScreenVC = storyboard.instantiateViewController(withIdentifier: "ProScreenVC") as? ProScreenVC {
+            proScreenVC.modalPresentationStyle = .fullScreen
+            present(proScreenVC, animated: true, completion: nil)
         }
     }
 }
