@@ -78,6 +78,113 @@ class MoreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return groupedData[section].count
     }
     
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let dataIndex = groupedData[indexPath.section][indexPath.row]
+//        let data = tableData[dataIndex]
+//        
+//        let cell: UITableViewCell
+//        
+//        switch data {
+//        case .type1(let name, let label1, let label2, let buttonTitle):
+//            let typeCell = tableView.dequeueReusableCell(withIdentifier: "FirstPrototypeCell", for: indexPath) as! FirstPrototypeCell
+//            typeCell.leftImageView.image = UIImage(named: name)
+//            typeCell.topLabel.text = label1
+//            typeCell.bottomLabel.text = label2
+//            typeCell.actionButton.setImage(hiddenButtonIndices.contains(dataIndex) ? nil : UIImage(named: buttonTitle), for: .normal)
+//            typeCell.actionButton.tag = dataIndex
+//            typeCell.layer.borderWidth = 2
+//            typeCell.layer.borderColor = UIColor.red.cgColor
+//            typeCell.actionButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+//            
+//            typeCell.contentView.layer.cornerRadius = 15
+//            typeCell.contentView.clipsToBounds = true
+//            typeCell.contentView.backgroundColor = .white
+//            
+//            cell = typeCell
+//            
+////        case .type2(let name, let label, let buttonTitle):
+////            let typeCell = tableView.dequeueReusableCell(withIdentifier: "SecondPrototypeCell", for: indexPath) as! SecondPrototypeCell
+////            typeCell.leftImageView.image = UIImage(named: name)
+////            typeCell.titleLabel.text = label
+////            typeCell.actionButton.setImage(hiddenButtonIndices.contains(dataIndex) ? nil : UIImage(named: buttonTitle), for: .normal)
+////            typeCell.actionButton.tag = dataIndex
+////            typeCell.actionButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+////            
+////            typeCell.contentView.clipsToBounds = true
+////            if indexPath.row == 0 {
+////                typeCell.contentView.layer.cornerRadius = 15
+////                typeCell.contentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+////            } else if indexPath.row == groupedData[indexPath.section].count - 1 {
+////                typeCell.contentView.layer.cornerRadius = 15
+////                typeCell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+////            } else {
+////                typeCell.contentView.layer.cornerRadius = 0
+////            }
+////            
+////            typeCell.contentView.backgroundColor = customCellColor
+////            
+////            cell = typeCell
+//        case .type2(let name, let label, let buttonTitle):
+//            let typeCell = tableView.dequeueReusableCell(withIdentifier: "SecondPrototypeCell", for: indexPath) as! SecondPrototypeCell
+//            typeCell.leftImageView.image = UIImage(named: name)
+//            typeCell.titleLabel.text = label
+//            typeCell.actionButton.setImage(hiddenButtonIndices.contains(dataIndex) ? nil : UIImage(named: buttonTitle), for: .normal)
+//            typeCell.actionButton.tag = dataIndex
+//            typeCell.actionButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+//            
+//            typeCell.contentView.clipsToBounds = true
+//            let rowCount = groupedData[indexPath.section].count
+//            if rowCount == 1 {
+//                // Single-row section: round all corners
+//                typeCell.contentView.layer.cornerRadius = 15
+//                typeCell.contentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+//            } else if indexPath.row == 0 {
+//                typeCell.contentView.layer.cornerRadius = 15
+//                typeCell.contentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+//            } else if indexPath.row == rowCount - 1 {
+//                typeCell.contentView.layer.cornerRadius = 15
+//                typeCell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+//            } else {
+//                typeCell.contentView.layer.cornerRadius = 0
+//            }
+//            
+//            typeCell.contentView.backgroundColor = customCellColor
+//            cell = typeCell
+//            
+//        case .type3(let label):
+//            let typeCell = tableView.dequeueReusableCell(withIdentifier: "ThirdPrototypeCell", for: indexPath) as! ThirdPrototypeCell
+//            typeCell.titleLabel.text = label
+//            
+//            typeCell.contentView.layer.cornerRadius = 15
+//            typeCell.contentView.clipsToBounds = true
+//            typeCell.contentView.backgroundColor = customCellColor
+//            
+//            cell = typeCell
+//            
+//        case .type4(let name, let label):
+//            let typeCell = tableView.dequeueReusableCell(withIdentifier: "FourthPrototypeCell", for: indexPath) as! FourthPrototypeCell
+//            typeCell.leftImageView.image = UIImage(named: name)
+//            typeCell.titleLabel.text = label
+//            
+//            typeCell.contentView.clipsToBounds = true
+//            if indexPath.row == 0 {
+//                typeCell.contentView.layer.cornerRadius = 15
+//                typeCell.contentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+//            } else if indexPath.row == groupedData[indexPath.section].count - 1 {
+//                typeCell.contentView.layer.cornerRadius = 15
+//                typeCell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+//            } else {
+//                typeCell.contentView.layer.cornerRadius = 0
+//            }
+//            
+//            typeCell.contentView.backgroundColor = customCellColor
+//            
+//            cell = typeCell
+//        }
+//        
+//        cell.backgroundColor = .white
+//        return cell
+//    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let dataIndex = groupedData[indexPath.section][indexPath.row]
         let data = tableData[dataIndex]
@@ -111,10 +218,14 @@ class MoreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             typeCell.actionButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
             
             typeCell.contentView.clipsToBounds = true
-            if indexPath.row == 0 {
+            let rowCount = groupedData[indexPath.section].count
+            if rowCount == 1 {
+                typeCell.contentView.layer.cornerRadius = 15
+                typeCell.contentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            } else if indexPath.row == 0 {
                 typeCell.contentView.layer.cornerRadius = 15
                 typeCell.contentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-            } else if indexPath.row == groupedData[indexPath.section].count - 1 {
+            } else if indexPath.row == rowCount - 1 {
                 typeCell.contentView.layer.cornerRadius = 15
                 typeCell.contentView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
             } else {
@@ -157,9 +268,10 @@ class MoreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
         
         cell.backgroundColor = .white
+        cell.selectionStyle = .none // Add this line to disable the gray highlight
+        
         return cell
     }
-    
     // MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -167,10 +279,10 @@ class MoreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let data = tableData[dataIndex]
         
         switch data {
-        case .type1: return isRotated ? 100 : UIScreen.main.bounds.height / 10
-        case .type2: return isRotated ? 60 : UIScreen.main.bounds.height / 15
-        case .type3: return isRotated ? 60 : UIScreen.main.bounds.height / 15
-        case .type4: return isRotated ? 60 : UIScreen.main.bounds.height / 15
+        case .type1: return  100
+        case .type2: return  60
+        case .type3: return  60
+        case .type4: return  60
         }
     }
     
