@@ -7,16 +7,24 @@
 
 import UIKit
 import CoreData
+import StoreKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var products:[SKProduct]? = []
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        loadProducts()
+        getPurchases()
+        
+        if userDefaults.bool(forKey : IS_SUBSCRIBED_USER){
+            verifyReceipt()
+        }
         return true
     }
+    
 
     // MARK: UISceneSession Lifecycle
 
@@ -76,6 +84,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+}
+
+extension AppDelegate{
+    func getPurchases()-> Void{
+        SwiftyStoreKit.shouldAddStorePaymentHandler = { payment , product in
+            return true
+        }
+        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
+        }
+    }
+    func loadProducts(){
+        SwiftyStoreKit.retrieveProductsInfo([weeklySub,monthlySub,yearlySub,lifeTimeProduct]) { (results) in
+            if results.retrievedProducts.count > 0 {
+                self.products = Array(results.retrievedProducts)
+            }
+            NotificationCenter.default.post(name: .loadProduct, object: nil)
+        }
+    }
+    func verifyReceipt() -> Void{
+        let appleValidator = AppleReceiptValidator(service: .production , sharedSecret: "")
+        SwiftyStoreKit.verifyReceipt(using: appleValidator, forceRefresh: true) {(result) in
+            // guard let self = self else {return}
+            switch result {
+            case .success(let receipt):
+                let productIds = Set([weeklySub,monthlySub,yearlySub,lifeTimeProduct])
+                let purchaseResult = SwiftyStoreKit.verifySubscriptions(productIds: productIds, inReceipt: receipt)
+                switch purchaseResult {
+                case .purchased( _ , _):
+                    userDefaults.set(true, forKey: IS_SUBSCRIBED_USER)
+                    NotificationCenter.default.post(name: .purchaseCheck, object: nil)
+                case .expired( _, _):
+                    NotificationCenter.default.post(name: .purchaseCheck, object: nil)
+                    break
+                case .notPurchased:
+                    NotificationCenter.default.post(name: .purchaseCheck, object: nil)
+                    break
+                case .billingRetry( _, _):
+                    userDefaults.set(true, forKey: IS_SUBSCRIBED_USER)
+                    NotificationCenter.default.post(name: .purchaseCheck, object: nil)
+                    break
+                }
+            case .error(_):
+                break
+            case .cancelError(error: _):
+                break
+            }
+            
+        }
+    }
 
 }
+
+
 

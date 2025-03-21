@@ -9,6 +9,7 @@ class ViewController: UIViewController {
     var randomColors: [ColorPalette]?
     var favNamedColorPalettes: [FavNamedColorPalettes] = []
     var singleColorsInCoreData: [SingleColor]?
+    var firsttimeload = true
     
 
     func isFavorite(colorPalette: ColorPalette?) -> Bool {
@@ -55,6 +56,15 @@ class ViewController: UIViewController {
             object: nil
         )
         
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !isPremiumUser() && firsttimeload {
+            firsttimeload = false
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProScreenVC") as! ProScreenVC
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true, completion: nil)
+        }
     }
     
     @objc func refreshFavorites() {
