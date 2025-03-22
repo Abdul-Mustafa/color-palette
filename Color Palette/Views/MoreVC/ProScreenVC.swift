@@ -49,7 +49,7 @@ class ProScreenVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         super.viewDidLoad()
         changeButton()
         findValues()
-        continueBtn.layer.cornerRadius = 10
+       
         planCollectionView.delegate = self
         planCollectionView.dataSource = self
         
@@ -226,7 +226,8 @@ class ProScreenVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let isIpad = UIDevice.current.userInterfaceIdiom == .pad
         let titleFontSize: CGFloat = isIpad ? 28 : 20
         let subTextFontSize: CGFloat = isIpad ? 22 : 14
-        
+        continueBtn.layer.cornerRadius = 35.0 // Match viewDidLoad value
+        continueBtn.clipsToBounds = true
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
         
@@ -298,6 +299,7 @@ class ProScreenVC: UIViewController, UICollectionViewDelegate, UICollectionViewD
         let oneYearValue = price / Double(days)
         return oneYearValue
     }
+
     
 //    func applyGradientToButton() {
 //        if continueBtn.isEnabled {

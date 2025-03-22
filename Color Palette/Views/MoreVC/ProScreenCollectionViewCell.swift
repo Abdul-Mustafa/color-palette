@@ -15,5 +15,8 @@ class ProScreenCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         self.layer.cornerRadius = 10
+        self.layer.borderWidth = 2.0
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.cornerRadius = 15.0
     }
 }
