@@ -4,7 +4,16 @@ import UIKit
 
 class AddButtonViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private var galleryButton: UIButton!
-    
+    var firsttimeload = true
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !isPremiumUser() && firsttimeload {
+            firsttimeload = false
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProScreenVC") as! ProScreenVC
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true, completion: nil)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -14,6 +23,8 @@ class AddButtonViewController: UIViewController, UIImagePickerControllerDelegate
             print("Warning: This view controller should be embedded in a UINavigationController for optimal navigation")
         }
     }
+    
+
     
     private func setupUI() {
         let titleLabel = UILabel()

@@ -1,7 +1,7 @@
 
 
 import UIKit
-
+import StoreKit
 
 class ExploreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -25,6 +25,16 @@ class ExploreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var SubView: UIView!
     
     @IBOutlet weak var tableViewInExploreVC: UITableView!
+    var firsttimeload = true
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !isPremiumUser() && firsttimeload {
+            firsttimeload = false
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProScreenVC") as! ProScreenVC
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true, completion: nil)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationController()
@@ -45,6 +55,7 @@ class ExploreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
 
 }
+
 
 
 
