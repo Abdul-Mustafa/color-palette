@@ -37,9 +37,16 @@ class CollectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         tableViewInCollectonVC.reloadData()
     }
     
+//    func fetchSingleColor() {
+//        singleColorsInCorData = CoreDataManager.shared.fetchSingleColors()
+//        tableViewInCollectonVC.reloadData()
+//    }
     func fetchSingleColor() {
+        let oldCount = singleColorsInCorData.count
         singleColorsInCorData = CoreDataManager.shared.fetchSingleColors()
-        tableViewInCollectonVC.reloadData()
+        if oldCount != singleColorsInCorData.count {
+            tableViewInCollectonVC.reloadData()
+        }
     }
     
     @objc func refreshFavorites() {
@@ -196,6 +203,18 @@ class CollectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             }
         }
     }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        if indexPath.row < favNamedColorPalettes.count {
+//            return tableView.frame.width * 0.8
+//        } else {
+//            let itemCount = singleColorsInCorData.count
+//            let itemsPerRow = 4 // Since width is 0.25 of collection view width
+//            let rowCount = ceil(CGFloat(itemCount) / CGFloat(itemsPerRow))
+//            let itemHeight = (tableView.frame.width * 0.25) * 1.3 // From sizeForItemAt
+//            let totalHeight = rowCount * itemHeight
+//            return max(totalHeight + 50, tableView.frame.width) // Add padding for title
+//        }
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
