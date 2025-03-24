@@ -395,6 +395,13 @@ class ViewController: UIViewController {
             name: CoreDataManager.paletteDidChangeNotification,
             object: nil
         )
+        NotificationCenter.default.addObserver(
+                    self,
+                    selector: #selector(showPremiumScreen),
+                    name: CoreDataManager.showPremiumScreenNotification,
+                    object: nil
+                )
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -406,6 +413,12 @@ class ViewController: UIViewController {
             present(vc, animated: true, completion: nil)
         }
     }
+    @objc func showPremiumScreen() {
+            let vc = UIStoryboard(name: "Main", bundle: nil)
+                .instantiateViewController(withIdentifier: "ProScreenVC") as! ProScreenVC
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true, completion: nil)
+        }
     
     @objc func refreshFavorites(_ notification: Notification) {
         favNamedColorPalettes = CoreDataManager.shared.fetchFavorites()
@@ -424,6 +437,8 @@ class ViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self, name: CoreDataManager.paletteDidChangeNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: CoreDataManager.showPremiumScreenNotification, object: nil)
     }
     
     func isFavorite(colorPalette: ColorPalette?) -> Bool {
@@ -472,7 +487,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             // Ensure button is interactive
             cell.ellipsisButtonInColorSideBar.isUserInteractionEnabled = true
             
-            let favAction = UIAction(title: "Fav", image: UIImage(systemName: isSaved ? "heart.fill" : "heart")) { [weak self] _ in
+            let favAction = UIAction(title: "Fav", image: UIImage(systemName: isSaved  ? "heart.fill" : "heart")) { [weak self] _ in
                 guard let self = self else { return }
                 print("Fav tapped for \(colorName)") // Debug log
                 if isSaved {
@@ -543,8 +558,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                             self.favNamedColorPalettes = CoreDataManager.shared.fetchFavorites()
                             DispatchQueue.main.async {
                                 if let updatedCell = self.tableviewAtHome.cellForRow(at: indexPath) as? HomeTableViewCell {
-                                    updatedCell.heartButtonInTopView.setImage(UIImage(systemName: "heart"), for: .normal)
-                                }
+                                    
+                                        updatedCell.heartButtonInTopView.setImage(UIImage(systemName: "heart"), for: .normal)}
+                                
                             }
                         }
                         let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
@@ -556,7 +572,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                         self.favNamedColorPalettes = CoreDataManager.shared.fetchFavorites()
                         DispatchQueue.main.async {
                             if let updatedCell = self.tableviewAtHome.cellForRow(at: indexPath) as? HomeTableViewCell {
-                                updatedCell.heartButtonInTopView.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                                if isPremiumUser(){
+                                    updatedCell.heartButtonInTopView.setImage(UIImage(systemName: "heart.fill"), for: .normal)}
                             }
                         }
                     }

@@ -1,5 +1,3 @@
-
-
 import UIKit
 import StoreKit
 
@@ -26,15 +24,7 @@ class ExploreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableViewInExploreVC: UITableView!
     var firsttimeload = true
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if !isPremiumUser() && firsttimeload {
-            firsttimeload = false
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProScreenVC") as! ProScreenVC
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: true, completion: nil)
-        }
-    }
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationController()
@@ -52,6 +42,15 @@ class ExploreVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         
 
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !isPremiumUser() && firsttimeload {
+            firsttimeload = false
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProScreenVC") as! ProScreenVC
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true, completion: nil)
+        }
     }
 
 }
@@ -77,7 +76,7 @@ extension ExploreVC {
 
 //        let boldConfig = UIImage.SymbolConfiguration(weight: .bold)
 //        let listImage = UIImage(systemName: "list.bullet", withConfiguration: boldConfig)
-//        
+//
 //        let listButton = UIBarButtonItem(
 //            image: listImage,
 //            style: .plain,
@@ -115,4 +114,3 @@ extension ExploreVC: UISearchResultsUpdating {
         print("Search Query: \(text)")
     }
 }
-

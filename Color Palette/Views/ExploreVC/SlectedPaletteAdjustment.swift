@@ -58,8 +58,25 @@ class SlectedPaletteAdjustment: UIViewController, UICollectionViewDataSource, UI
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
            layout.estimatedItemSize = .zero
         }
+        NotificationCenter.default.addObserver(
+                    self,
+                    selector: #selector(showPremiumScreen),
+                    name: CoreDataManager.showPremiumScreenNotification,
+                    object: nil
+                )
     }
-    
+    @objc func showPremiumScreen() {
+            let vc = UIStoryboard(name: "Main", bundle: nil)
+                .instantiateViewController(withIdentifier: "ProScreenVC") as! ProScreenVC
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true, completion: nil)
+        }
+
+        deinit {
+            // Remove both observers
+            NotificationCenter.default.removeObserver(self, name: CoreDataManager.paletteDidChangeNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: CoreDataManager.showPremiumScreenNotification, object: nil)
+        }
     // MARK: - Setup Methods
     private func setupView() {
         view.backgroundColor = .white
