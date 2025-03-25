@@ -256,7 +256,28 @@ class TopTableViewCellInCollectionVC: UITableViewCell, UICollectionViewDelegate,
     @IBAction func heartButtonTapped(_ sender: UIButton) {
         buttonAction?()
     }
-    
+    @IBAction func proButtonAction(_ sender: Any) {
+            // Use the responder chain to find the parent view controller and present ProScreenVC
+            if let viewController = findParentViewController() {
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProScreenVC") as! ProScreenVC
+                vc.modalPresentationStyle = .fullScreen
+                viewController.present(vc, animated: true, completion: nil)
+            } else {
+                print("Error: Could not find a view controller to present ProScreenVC")
+            }
+        }
+        
+        // Helper method to find the parent view controller
+        private func findParentViewController() -> UIViewController? {
+            var responder: UIResponder? = self
+            while responder != nil {
+                responder = responder?.next
+                if let viewController = responder as? UIViewController {
+                    return viewController
+                }
+            }
+            return nil
+        }
     func configureCell(with colorPalettes: [String]) {
         self.colorPalettes = colorPalettes
         topCollectionviewInCollectionVC.reloadData()
@@ -272,9 +293,11 @@ class TopTableViewCellInCollectionVC: UITableViewCell, UICollectionViewDelegate,
         if indexPath.row > 1 && !isPremiumUser() {
                 cell.ellipsisButtonInCollectionViewCell.isHidden = true
                 cell.colorCodeInBottomCenterInCollectionViewCell.isHidden = true
+            cell.proButtonOutlet.isHidden = false
             } else {
                 cell.ellipsisButtonInCollectionViewCell.isHidden = false
                 cell.colorCodeInBottomCenterInCollectionViewCell.isHidden = false
+                cell.proButtonOutlet.isHidden = true
             }
         let colorName = colorPalettes?[indexPath.row] ?? "#FFFFFF"
         let backgroundColor = UIColor(hexString: colorName)
