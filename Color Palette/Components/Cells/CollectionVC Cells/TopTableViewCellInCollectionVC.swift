@@ -373,4 +373,17 @@ class TopTableViewCellInCollectionVC: UITableViewCell, UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.row > 1 && !isPremiumUser() {
+            if let viewController = findParentViewController() {
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProScreenVC") as! ProScreenVC
+                vc.modalPresentationStyle = .fullScreen
+                viewController.present(vc, animated: true, completion: nil)
+            } else {
+                print("Error: Could not find a view controller to present ProScreenVC")
+            }
+            } else {
+             
+            }
+    }
 }
