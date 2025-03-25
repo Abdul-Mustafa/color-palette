@@ -452,9 +452,7 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
             }
         }
       
-        let lockAction = UIAction(title: "Lock", image: UIImage(systemName: "lock")) { _ in
-            print("Lock tapped for \(colorName)") // Debug log
-        }
+       
         
         let copyAction = UIAction(title: "Copy", image: UIImage(systemName: isCopied ? "doc.on.doc.fill" : "doc.on.doc")) { [weak self] _ in
             guard let self = self else { return }
@@ -470,7 +468,7 @@ class HomeTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
             }
         }
         
-        let menu = UIMenu(title: "", children: [favAction, lockAction, copyAction, shareAction])
+        let menu = UIMenu(title: "", children: [favAction,  copyAction, shareAction])
         cell.ellipsisButtonInCollectionViewCell.menu = menu
         cell.ellipsisButtonInCollectionViewCell.showsMenuAsPrimaryAction = true
         cell.ellipsisButtonInCollectionViewCell.isUserInteractionEnabled = true // Ensure tappable

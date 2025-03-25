@@ -393,9 +393,7 @@ class CollectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                     }
                 }
                 
-                let lockAction = UIAction(title: "Lock", image: UIImage(systemName: "lock")) { _ in
-                    print("Lock tapped for \(colorName)")
-                }
+              
                 
                 let copyAction = UIAction(title: "Copy", image: UIImage(systemName: isCopied ? "doc.on.doc.fill" : "doc.on.doc")) { [weak self] _ in
                     guard let self = self else { return }
@@ -413,7 +411,7 @@ class CollectionVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                     }
                 }
                 
-                let menu = UIMenu(title: "", children: [favAction, lockAction, copyAction, shareAction])
+                let menu = UIMenu(title: "", children: [favAction, copyAction, shareAction])
                 cell.ellipsisButtonInColorSideBar.menu = menu
                 cell.ellipsisButtonInColorSideBar.showsMenuAsPrimaryAction = true
                 
