@@ -269,6 +269,13 @@ class TopTableViewCellInCollectionVC: UITableViewCell, UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopCollectionViewCellInCollectionVC", for: indexPath) as! TopCollectionViewCellInCollectionVC
         
+        if indexPath.row > 1 && !isPremiumUser() {
+                cell.ellipsisButtonInCollectionViewCell.isHidden = true
+                cell.colorCodeInBottomCenterInCollectionViewCell.isHidden = true
+            } else {
+                cell.ellipsisButtonInCollectionViewCell.isHidden = false
+                cell.colorCodeInBottomCenterInCollectionViewCell.isHidden = false
+            }
         let colorName = colorPalettes?[indexPath.row] ?? "#FFFFFF"
         let backgroundColor = UIColor(hexString: colorName)
         let textColor = backgroundColor.adjustedBrightness()
